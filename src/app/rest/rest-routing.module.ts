@@ -8,7 +8,8 @@ import { SetWithFilesResolverService } from './services/set-with-files-resolver.
 
 const routes: Routes = [
       { path: 'sets', component: DatasetListComponent },
-      { path: 'set-viewer/:id', component: DatasetComponent, resolve: { set: SetWithFilesResolverService} },
+      // { path: 'set-viewer/:id', component: DatasetComponent, resolve: { set: SetWithFilesResolverService} },
+      { path: 'set-viewer/:id', component: DatasetComponent },
       { path: 'set-editor/:id', component: DatasetEditorComponent, resolve: { set: SetResolverService} },
       { path: '', component: DatasetListComponent }
 ];

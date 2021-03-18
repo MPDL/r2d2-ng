@@ -110,6 +110,7 @@ export interface R2D2File {
     checksum?: string;
     format?: string;
     size?: number;
+    datasets: DatasetVersion[];
 }
 
 export interface FileChunk {
