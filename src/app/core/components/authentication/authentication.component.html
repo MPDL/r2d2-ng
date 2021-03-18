@@ -1,0 +1,5 @@
+<div class="navbar-nav">
+    <a *ngIf="!auth.isLoggedIn" [routerLink]="" class="nav-item nav-link text-info" (click)="openRegistrationDialog()">Register</a>
+    <a *ngIf="!auth.isLoggedIn" [routerLink]="" class="nav-item nav-link text-primary" (click)="openLoginDialog()">Login</a>
+    <a *ngIf="auth.isLoggedIn" [routerLink]="" class="nav-item nav-link text-secondary" (click)="logoff()">Logout</a>
+</div>

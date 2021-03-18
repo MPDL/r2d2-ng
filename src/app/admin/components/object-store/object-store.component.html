@@ -1,0 +1,25 @@
+<div class="container-fluid">
+    <div class="mt-0 row">
+        <div class="card col-4">
+            <div class="card-header">
+                <h2 class="card-title">Container</h2>
+            </div>
+            <div class="list-group-flush">
+                <div class="list-group-item list-group-item-action py-0 d-flex flex-sm-row align-items-center"
+                    *ngFor="let c of container | async" (click)="goTo(c.name)">
+                    <span class="col-sm-8 text-start" [innerHtml]="c.name" [ngClass]="{'text-info': c.name === selected}"></span>
+                    <span class="col-sm-1 text-start" [innerHtml]="c.objectCount"></span>
+                    <span class="col-sm-2 text-start" [innerHtml]="c.bytesUsed"></span>
+                    <div class="col-sm-1 text-end">
+                        <input type="submit" class="btn btn-outline-secondary btn-sm"
+                          (click)="remove(c.name); $event.stopPropagation()" name="delete" value="x" />
+                      </div>
+                </div>
+            </div>
+        </div>
+        <div class="card col-8">
+            <pre [innerHtml]="cont | json | highLightJson: highlight"></pre>
+        </div>
+    </div>
+</div>
+<!--<pre>{{datasets | async | json}}</pre>-->

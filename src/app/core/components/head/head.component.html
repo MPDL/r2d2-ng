@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand">
+    <div class="container-fluid">
+        <div class="navbar-brand">
+            <a [routerLink]="['/rest']">
+                <img src="assets/images/mpdl.png">
+            </a>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navToggler"
+            aria-controls="navToggler" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navToggler">
+            <div class="navbar-nav">
+                <div class="navbar-text text-secondary h1">
+                    <span>r2d2-ng&copy;</span>
+                </div>
+                <div class="navbar-text text-secondary mt-auto">r2d2(ng) &copy;lient (v{{version}})</div>
+            </div>
+            <div class="d-flex ms-auto">
+                <r2d2-authentication></r2d2-authentication>
+                <a *ngIf="auth.isAdmin" [routerLink]="['/admin']" class="nav-item nav-link text-warning">Admin</a>
+                <!--<a [routerLink]="['/rest']" class="nav-item nav-link text-success">RestDAO</a>-->
+                <!--<a [routerLink]="['/files']" class="nav-item nav-link text-primary">Files</a>-->
+            </div>
+        </div>
+    </div>
+</nav>

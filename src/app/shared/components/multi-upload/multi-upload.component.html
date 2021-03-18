@@ -1,0 +1,30 @@
+<input type="file" #file style="display: none" (change)="onFilesAdded()" multiple />
+<div class="modal-content">
+    <div class="modal-header bg-dark border-dark">
+        <h5 class="modal-title text-info" id="title">Upload Parts 2 <small>{{data.fileid}}</small></h5>
+    </div>
+    <div class="modal-body bg-dark">
+        <div class="list-grup-flush">
+            <div class="list-group-item list-group-item-action py-0 d-flex flex-sm-row align-items-center"
+                *ngFor="let part of parts">
+                <span class="col-sm-3">{{part.file.name}}</span>
+                <div class="col-sm-1">
+                    <input class="form-control form-control-sm" type="text" [(ngModel)]="part.part"
+                        name="part" />
+                </div>
+                <span *ngIf="file_progress" class="col-sm-6 text-warning">{{file_progress[part.file.name]?.id}}</span>
+                <span class="col-sm-1" *ngIf="file_progress">{{file_progress[part.file.name]?.state}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer bg-dark border-dark">
+        <button [disabled]="uploading || uploadSuccessful" class="btn btn-outline-info btn-sm me-auto"
+            (click)="addFiles()">
+            Add Parts
+        </button>
+        <button *ngIf="showCancelButton" type="button" class="btn btn-outline-warning btn-sm"
+            (click)="cancel()">Cancel</button>
+        <button type="button" class="btn btn-outline-light btn-sm" [disabled]="!canBeClosed"
+            (click)="close()">{{primaryButtonText}}</button>
+    </div>
+</div>

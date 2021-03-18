@@ -1,0 +1,11 @@
+<div [formGroup]=parent_form>
+    <mat-chip-list #chipList aria-label="Fruit selection" [formControlName]="control_name">
+        <mat-chip class="bg-secondary text-light" *ngFor="let chip of chips.value" [selectable]="selectable" [removable]="removable" (removed)="remove(chip)">
+            {{chip}}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+        <input class="form-control form-control-sm" type="text" id="'ds-'+control_name" placeholder="Add ..."
+            [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
+    </mat-chip-list>
+</div>

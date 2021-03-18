@@ -1,0 +1,41 @@
+<div [formGroup]="authorsForm">
+    <div class="row mb-1 w-100 g-1">
+        <div class="col-4">
+            <input class="form-control form-control-sm" type="text" placeholder="first" formControlName="givenName"
+                id="author-first" />
+            <r2d2-validation-errors [control]="authorsForm.controls.givenName"
+                [messages]="{reqired:'first is required', mustOrNot:'Wilhelm is disallowed'}"></r2d2-validation-errors>
+        </div>
+        <div class="col-4">
+            <input class="form-control form-control-sm" type="text" placeholder="last" formControlName="familyName"
+                id="author-last" />
+            <r2d2-validation-errors [control]="authorsForm.controls.familyName"
+                [messages]="{reqired:'last is required', mustOrNot:'Frank is disallowed', minlength:'gimme at least 2!'}">
+            </r2d2-validation-errors>
+        </div>
+        <div class="col-3">
+            <input class="form-control form-control-sm" type="text" placeholder="id" formControlName="orcid"
+                id="author-id" />
+            <r2d2-validation-errors [control]="authorsForm.controls.orcid"
+                [messages]="{mustOrNot:'ORCID URL !!!', minlength:'gimme at least 2!'}">
+            </r2d2-validation-errors>
+        </div>
+        <div class="col-1 btn-group btn-group-sm d-flex">
+            <input type="button" class="btn btn-sm" name="remove" value="--" (click)="removeAuthor()" />
+            <input type="button" class="btn btn-sm ms-1" name="add" value="+" (click)="addAuthor()" />
+        </div>
+    </div>
+    <!--<div class="form-group form-row mb-1 w-100">-->
+        <!--<div>-->
+            <div formArrayName="affiliations" id="ous">
+                <div *ngFor="let affiliation of authorsForm.controls['affiliations']['controls']; let i=index">
+                    <div [formGroupName]="i">
+                        <r2d2-affiliation [affiliationForm]="authorsForm.controls['affiliations']['controls'][i]"
+                            (notice)="handleAffiliations($event, i)">
+                        </r2d2-affiliation>
+                    </div>
+                </div>
+            </div>
+        <!--</div>-->
+    <!--</div>-->
+</div>

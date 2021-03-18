@@ -1,0 +1,14 @@
+<nav class="navbar navbar-expand-md navbar-dark py-0 justify-content-between">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse row" id="navbarNav">
+      <div class="navbar-nav align-self-center me-auto">
+        <a routerLink="./" class="nav-item nav-link text-primary" [routerLinkActive]="['active']">rest</a>
+        <a routerLink="./sets" class="nav-item nav-link" [routerLinkActive]="['active']">list</a>
+        <a routerLink="./upload" class="nav-item nav-link" [routerLinkActive]="['active']">upload</a>
+      </div>
+    </div>
+  </nav>
+  <router-outlet></router-outlet>

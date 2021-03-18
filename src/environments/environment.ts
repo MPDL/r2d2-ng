@@ -1,9 +1,16 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
+const { version } = require('../../package.json');
 
 export const environment = {
-  production: false
+  production: false,
+  ver: version,
+  osiris_rest_uri: 'http://130.183.216.136/node/osiris',
+  r2d2_rest_uri: 'http://localhost:8080/datasets',
+  r2d2_file_uri: 'http://localhost:8080/files',
+  r2d2_admin_uri: 'http://localhost:8080/admin',
+  r2d2_vocab_uri: 'http://localhost:8080/vocabulary',
 };
 
 /*

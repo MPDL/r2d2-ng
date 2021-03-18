@@ -1,0 +1,51 @@
+<div class="modal-content">
+  <div class="modal-header bg-secondary border-secondary">
+    <h5 class="modal-title" id="exampleModalLabel">Register</h5>
+  </div>
+  <form [formGroup]="registrationForm" (ngSubmit)="register()">
+    <div class="modal-body bg-secondary">
+      <input name="first" type="text" class="form-control form-control-sm" placeholder="first name"
+        formControlName="first" />
+      <r2d2-validation-errors [control]="registrationForm.controls.first"
+        [messages]="{reqired:'first is required', mustOrNot:'first is disallowed', minlength:'gimme at least 2!'}">
+      </r2d2-validation-errors>
+      <input type="text" class="form-control form-control-sm" placeholder="last name" formControlName="last" />
+      <r2d2-validation-errors [control]="registrationForm.controls.last"
+        [messages]="{reqired:'last is required', mustOrNot:'last is disallowed', minlength:'gimme at least 2!'}">
+      </r2d2-validation-errors>
+      <input type="email" class="form-control form-control-sm" placeholder="email" formControlName="email" />
+      <r2d2-validation-errors [control]="registrationForm.controls.email"
+        [messages]="{reqired:'email is required', email:'email inalid!'}">
+      </r2d2-validation-errors>
+      <div class="row my-1 w-100">
+        <div class="col-12">
+            <div formArrayName="affiliations" id="ous">
+                <div *ngFor="let affiliation of registrationForm.controls['affiliations']['controls']; let i=index">
+                    <div [formGroupName]="i">
+                        <r2d2-affiliation [affiliationForm]="registrationForm.controls['affiliations']['controls'][i]"
+                            (notice)="handleAffiliations($event, i)">
+                        </r2d2-affiliation>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="text" class="form-control form-control-sm" placeholder="identifier" formControlName="identifier" />
+
+      <input type="password" class="form-control form-control-sm" placeholder="password" formControlName="pass"
+        autocomplete="new-password" />
+      <r2d2-validation-errors [control]="registrationForm.controls.pass"
+        [messages]="{reqired:'pass is required', minlength:'gimme more!'}">
+      </r2d2-validation-errors>
+      <input type="password" class="form-control form-control-sm" placeholder="password again" formControlName="match"
+        autocomplete="new-password" />
+      <r2d2-validation-errors [control]="registrationForm.controls.match"
+        [messages]="{reqired:'match is required', minlength:'gimme more!'}">
+      </r2d2-validation-errors>
+    </div>
+    <div class="modal-footer bg-secondary border-secondary">
+      <button type="button" class="btn btn-outline-dark btn-sm" (click)="close()">Close</button>
+      <button type="submit" class="btn btn-outline-info btn-sm">Register</button>
+    </div>
+  </form>
+</div>

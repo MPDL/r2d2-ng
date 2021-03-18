@@ -1,0 +1,87 @@
+// importing all prevents some overrides to fail, like $list-group-action-color:$yellow-400;
+// @import '~bootstrap/scss/bootstrap';
+// Required
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+
+$gray-1: #ced4da;
+$gray-2: #adb5bd;
+$gray-0: #868e96;
+$gray-3: #495057;
+$gray-4: #343a40;
+
+$ikb-12: #5885F7;
+$ikb-11: #2E68FA;
+$ikb-1: #1154FB;
+$ikb-2: #0040E1;
+$ikb-0: #0030A7;
+$ikb-3: #002787;
+$ikb-4: #001D67;
+
+$gold-1: #FFE08C;
+$gold-2: #F2CA5D;
+$gold-0: #DAAF37;
+$gold-3: #B78D19;
+$gold-4: #916C04;
+
+$mpdl-red: #b20004;
+$mpdl-orange: #d45a00;
+$mpdl-yellow: #f2b200;
+$mpdl-green: #60850c;
+$mpdl-blue-1: #0084bc;
+$mpdl-blue-2: #00387d;
+$mpdl-purple: #5a117d;
+
+$primary: $mpdl-blue-1;
+// $secondary: $mpdl-blue-2;
+$success: $mpdl-green;
+$info: $mpdl-yellow;
+$warning: $mpdl-orange;
+$danger: $mpdl-red;
+$light: $gray-1;
+// $dark: $mpdl-purple;
+$body-bg: $gray-800;
+$body-color: $gray-400;
+$pre-color: $gray-500;
+
+/* required to redefine theme ... */
+$theme-colors: (
+  primary: $primary,
+  secondary: $secondary,
+  success: $success,
+  info: $info,
+  warning: $warning,
+  danger: $danger,
+  light: $light,
+  dark: $dark,
+  // add any additional color below
+  mpdl-blue: $mpdl-blue-2,
+  mpdl-purple: $mpdl-purple,
+);
+
+$card-bg:transparent;
+$card-border-width:0;
+
+$list-group-bg:transparent;
+$list-group-border-width:0;
+$list-group-hover-bg:tint-color($gray-800, 10%);
+$list-group-action-color:$gray-400;
+$list-group-action-hover-color:tint-color($body-color, 10%);
+
+$input-bg: $gray-700;
+$input-color: $light;
+$input-border-color: transparent;
+$input-focus-border-color: $gray-800;
+$input-focus-box-shadow: 0 0 0 0 transparent;
+$input-focus-bg: $gray-600;
+$input-focus-color: $gray-300;
+$input-placeholder-color: $gray-500;
+
+$custom-control-indicator-bg:transparent;
+$dropdown-bg:rgba($body-bg,0.4);
+$custom-control-indicator-border-color:$primary;
+$custom-control-label-color:$primary;
+
+$form-select-bg: $gray-700;
+$form-select-color: $gray-200;

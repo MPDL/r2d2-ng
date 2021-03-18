@@ -1,0 +1,43 @@
+<div class="container-fluid>">
+    <div class=" d-flex flex-sm-row align-items-center">
+        <div class="col-1 me-1">
+            <!--<img src="assets/images/edmond/logo_for_dark.png" alt="no image src" width="100%" height="auto">-->
+            <!--<img src="assets/images/edmond/logo_for_dark.png" alt="no image src" class="img-fluid">-->
+            <div class="d-flex flex-sm-column align-content-center">
+                <span *ngFor="let genre of dataset.metadata.genres"
+                    class="mb-1 badge rounded-pill bg-transparent border border-secondary text-secondary text-truncate"
+                    [innerHtml]="genre">
+                </span>
+            </div>
+        </div>
+        <div class="col-11">
+            <div class="d-flex flex-sm-row">
+                <!--cols is not required for flex-row, but may to used to limit row length ...-->
+                <!--<span class="col-8" [innerHtml]="dataset.metadata.title"></span>-->
+                <strong class="col-10" [innerHtml]="dataset.metadata.title"></strong>
+                <small class="col-sm-2 ms-auto text-secondary" [innerHtml]="'num of files n/a in index!'"></small>
+            </div>
+            <div class="d-flex flex-sm-row">
+                <small class="col-10 text-muted" [innerHtml]="dataset.metadata.description"></small>
+            </div>
+            <div class="d-flex flex-sm-row">
+                <div class="me-1" *ngFor="let author of dataset.metadata.authors">
+                    <small [innerHtml]="(author?.familyName || no_name) + ' ' + (author?.givenName || no_name)">
+                    </small>
+                    <a *ngIf="author.orcid" [href]="author.orcid" target="_blank">
+                        <img alt="ORCID logo" src="assets/images/ORCIDiD_icon.png" width="16" height="16" />
+                    </a>
+                </div>
+            </div>
+            <div class="d-flex flex-sm-row">
+
+            </div>
+            <div *ngIf="authenticated" class="d-flex flex-sm-row">
+                <small class="me-2 text-secondary" [innerHtml]="dataset.id"></small>
+                <small class="me-2 text-primary" [innerHtml]="dataset.versionNumber"></small>
+                <small class="me-2 text-info" [innerHtml]="dataset.state"></small>
+                <small class="text-secondary" [innerHtml]="dataset.modificationDate"></small>
+            </div>
+        </div>
+    </div>
+</div>

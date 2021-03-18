@@ -1,0 +1,6 @@
+<div class="text-warning" *ngIf="control.invalid && (control.dirty || control.touched)">
+    <div *ngIf="control.errors.required"><small>{{messages.reqired}}</small></div>
+    <div *ngIf="control.errors.mustOrNot"><small>{{messages.mustOrNot}}</small></div>
+    <div *ngIf="control.errors.minlength"><small>{{messages.minlength}}</small></div>
+    <div *ngIf="control.errors.email"><small>{{messages.email}}</small></div>
+</div>
