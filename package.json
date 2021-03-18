@@ -1,10 +1,10 @@
 {
   "name": "r2d2-ng",
-  "version": "0.0.0",
+  "version": "0.2.2",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --base-href=/r2d2ng/ --prod",
+    "build": "ng build --base-href=/r2d2-ng/ --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
