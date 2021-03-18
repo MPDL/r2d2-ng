@@ -1,4 +1,4 @@
-# R2d2Ng
+# r2d2-ng
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.5.
 
