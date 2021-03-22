@@ -217,4 +217,12 @@ export class DatasetComponent implements OnInit {
       },
         err => this.message.error(err));
   }
+
+  withdraw(id, lmd): void {
+    this.service.withdraw(id, lmd)
+      .subscribe((set: any) => {
+        this.service.reload(set.id);
+      },
+        err => this.message.error(err));
+  }
 }

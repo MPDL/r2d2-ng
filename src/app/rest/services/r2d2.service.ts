@@ -162,6 +162,21 @@ export class R2d2Service {
     );
   }
 
+  withdraw(id, lmd): Observable<object> {
+    const params = new HttpParams({ encoder: new ParamEncoder() })
+      .set('lmd', lmd);
+    // null body REQUIRED!
+    const body = {
+      modificationDate: lmd,
+      state: 'WITHDRAWN'
+    };
+    return this.http.put(this.apiUrl + '/' + id + '/state', body, {
+      params
+    }).pipe(
+      map(response => response)
+    );
+  }
+
   delete(id): Observable<string> {
     return of('NOT IMPLEMENTED YET!');
   }
