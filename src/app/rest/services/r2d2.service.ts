@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpRequest, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, EMPTY, forkJoin, Observable, of, Subject, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import { ESTO, ITO, DatasetVersion, SearchResult, ESResult } from '../../shared/components/model/entities';
+import { ESTO, ITO, DatasetVersion, SearchResult, ESResult, UpdateStateDTO } from '../../shared/components/model/entities';
 import { environment } from '../../../environments/environment';
 import { AuthenticationService } from '../../core/services/authentication.service';
 import { ParamEncoder } from '../../core/services/interceptors/param-encoder';
@@ -30,7 +30,19 @@ export class R2d2Service {
     return this.set$;
   }
 
-  list(search_string?: string): Observable<ESResult<DatasetVersion>> {
+  list(search_string?: string): Observable<SearchResult<DatasetVersion>> {
+    let params: HttpParams;
+    if (search_string) {
+      params = new HttpParams();
+      params = params.append('q', search_string);
+    }
+    return this.http.get<SearchResult<DatasetVersion>>(this.apiUrl, { params })
+    .pipe(
+      map(response => response)
+    );
+  }
+
+  search(search_string?: string): Observable<ESResult<DatasetVersion>> {
     let body;
 
     if (search_string) {
@@ -60,34 +72,6 @@ export class R2d2Service {
     return this.http.post<ESResult<DatasetVersion>>(this.apiUrl + '/search', body)
       .pipe(
         map(response => response)
-      );
-  }
-
-  list2(search_string?: string): Observable<ESTO<DatasetVersion>[]> {
-    let body;
-
-    if (search_string) {
-      body = {
-        query: {
-          query_string: {
-            query: search_string
-          }
-        }
-      };
-    } else {
-      body = {
-        query: {
-          match_all: {}
-        },
-        size: 100
-      };
-    }
-
-    return this.http.post<ESTO<DatasetVersion>[]>(this.apiUrl + '/search', body)
-      .pipe(
-        map(response => {
-          return (response as any).hits.hits;
-        })
       );
   }
 
@@ -147,32 +131,22 @@ export class R2d2Service {
       );
   }
 
-  publish(id, lmd): Observable<object> {
-    const params = new HttpParams({ encoder: new ParamEncoder() })
-      .set('lmd', lmd);
-    // null body REQUIRED!
-    const body = {
+  publish(id, lmd): Observable<DatasetVersion> {
+    const body: UpdateStateDTO = {
       modificationDate: lmd,
       state: 'PUBLIC'
     };
-    return this.http.put(this.apiUrl + '/' + id + '/state', body, {
-      params
-    }).pipe(
+    return this.http.put<DatasetVersion>(this.apiUrl + '/' + id + '/state', body).pipe(
       map(response => response)
     );
   }
 
-  withdraw(id, lmd): Observable<object> {
-    const params = new HttpParams({ encoder: new ParamEncoder() })
-      .set('lmd', lmd);
-    // null body REQUIRED!
-    const body = {
+  withdraw(id, lmd): Observable<DatasetVersion> {
+    const body: UpdateStateDTO = {
       modificationDate: lmd,
       state: 'WITHDRAWN'
     };
-    return this.http.put(this.apiUrl + '/' + id + '/state', body, {
-      params
-    }).pipe(
+    return this.http.put<DatasetVersion>(this.apiUrl + '/' + id + '/state', body).pipe(
       map(response => response)
     );
   }

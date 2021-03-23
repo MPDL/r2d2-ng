@@ -17,7 +17,6 @@ export class AffiliationComponent implements OnInit {
   @Input() affiliationForm: FormGroup;
   @Output() notice = new EventEmitter();
   ous: Observable<any[]>;
-  SEARCH_URI = environment.osiris_rest_uri + '/find';
   R2D2_VOCAB_URI = environment.r2d2_vocab_uri + '/ous';
 
   constructor(
@@ -54,36 +53,6 @@ export class AffiliationComponent implements OnInit {
       catchError((error) => {
         this.message.error(error);
         return EMPTY;
-      })
-    );
-  }
-
-  find(term): Observable<any[]> {
-    const params = {
-      index: 'grid_ous_20200311',
-      body: {
-        query: {
-          bool: {
-            should: {
-              term: { 'relationships.label.keyword': 'Max Planck Society' }
-            },
-            must: {
-              multi_match: {
-                query: term,
-                fields: ['name.auto', 'labels.label.auto', 'acronyms.auto']
-              }
-            }
-          }
-        }
-      }
-    };
-    return this.http.post(this.SEARCH_URI, params).pipe(
-      map((resp: any) => resp.hits.hits.map(
-        hit => hit._source
-      )),
-      catchError((error) => {
-        this.message.error(error);
-        return of();
       })
     );
   }

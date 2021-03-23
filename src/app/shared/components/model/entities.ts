@@ -14,9 +14,9 @@ export interface ITO<T> {
 export interface DatasetVersion {
     id: string;
     creationDate: string;
-    modificationDate: string;
-    creator: User;
-    modifier: User;
+    modificationDate?: string;
+    creator: string;
+    modifier?: string;
     versionNumber: number;
     state: 'PRIVATE' | 'PUBLIC' | 'WITHDRAWN';
     publicationDate?: string;
@@ -25,27 +25,29 @@ export interface DatasetVersion {
     dataset: Dataset;
   }
 
+export interface UpdateStateDTO {
+    modificationDate: string;
+    state: 'PUBLIC' | 'WITHDRAWN';
+}
+
 export interface Dataset {
     id: string;
     creationDate: string;
-    modificationDate: string;
-    creator: User;
-    modifier: User;
+    modificationDate?: string;
+    creator: string;
+    modifier?: string;
     state: 'PRIVATE' | 'PUBLIC' | 'WITHDRAWN';
-    datamanager?: User[];
-}
-
-export interface User {
-    id: string;
-    name: string;
+    latestVersion: number;
+    latestPublicVersion?: number;
+    withdrawComment?: string;
 }
 
 export interface UserAccount {
     id: string;
     creationDate: string;
     modificationDate: string;
-    creator: User;
-    modifier: User;
+    creator: string;
+    modifier: string;
     email: string;
     active: boolean;
     person: Person;
@@ -55,13 +57,12 @@ export interface UserAccount {
 export enum Role {
     admin = 'ADMIN',
     user = 'USER',
-    datamanager = 'DATAMANAGER',
-    deleteadmin = 'DELETEADMIN',
+    datamanager = 'DATAMANAGER'
 }
 
 export interface Grant {
     role: Role;
-    dataset: string;
+    dataset?: string;
 }
 
 export interface Person {
@@ -110,7 +111,7 @@ export interface R2D2File {
     checksum?: string;
     format?: string;
     size?: number;
-    datasets: DatasetVersion[];
+    datasets?: DatasetVersion[];
 }
 
 export interface FileChunk {
@@ -129,7 +130,7 @@ export interface FileUploadStatus {
 
 export interface SearchResult<T> {
     total: number;
-    hits: ITO<T>[];
+    hits?: ITO<T>[];
 }
 
 export interface ESResult<T> {

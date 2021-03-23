@@ -6,7 +6,6 @@ const { version } = require('../../package.json');
 export const environment = {
   production: false,
   ver: version,
-  osiris_rest_uri: 'http://130.183.216.136/node/osiris',
   r2d2_rest_uri: 'http://localhost:8080/datasets',
   r2d2_file_uri: 'http://localhost:8080/files',
   r2d2_admin_uri: 'http://localhost:8080/admin',

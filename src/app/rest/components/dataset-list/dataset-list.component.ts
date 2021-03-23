@@ -26,13 +26,14 @@ export class DatasetListComponent implements OnInit {
 
   ngOnInit(): void {
     this.datasets = this.service.list().pipe(
-      map(result => result.hits.hits.map(esto => esto._source))
+      // map(result => result.total > 0 ? result.hits.map(ito => ito.source) : [])
+      map(result => result.hits?.map(ito => ito.source))
     );
   }
 
   filter(): void {
     this.datasets = this.service.list(this.search_term).pipe(
-      map(result => result.hits.hits.map(esto => esto._source))
+      map(result => result.total > 0 ? result.hits.map(ito => ito.source) : [])
     );
     this.search_term = undefined;
   }
