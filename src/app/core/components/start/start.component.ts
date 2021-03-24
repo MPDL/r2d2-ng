@@ -9,7 +9,7 @@ export class StartComponent implements OnInit {
 
   title = 'Gettin\' started with  r2d2-ng';
   text = 'n/a';
-  
+
   ngOnInit(): void {
   }
 }
