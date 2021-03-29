@@ -1,3 +1,7 @@
+export interface Indexable {
+    [key: string]: any;
+}
+
 export interface ESTO<T> {
     _id: string;
     _version: number;

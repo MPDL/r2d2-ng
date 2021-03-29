@@ -52,7 +52,7 @@ export class FormsService {
       map((dataset: DatasetVersion) => {
         return this.builder.group({
         title: [dataset.metadata.title, Validators.required],
-        authors: dataset.metadata.authors.length > 0 ?
+        authors: dataset.metadata.authors && dataset.metadata.authors.length > 0 ?
           this.builder.array(dataset.metadata.authors.map((author: Person) => this.author(author))) :
           this.builder.array([this.emptyAuthor()]),
         description: [dataset.metadata.description || ''],
