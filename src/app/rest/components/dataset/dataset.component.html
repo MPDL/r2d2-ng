@@ -40,20 +40,6 @@
     <div class="card col-8">
       <div class="button row" style="font-size: 2rem">
         <a class="text-secondary col-1" [routerLink]="['/rest/sets']"><i class="bi-list-ol"></i></a>
-<<<<<<< Updated upstream
-        <a *ngIf="auth.isLoggedIn" class="text-primary col-1" [routerLink]="['/rest/set-editor', dataset.id]"
-          [queryParams]="{lmd:dataset.modificationDate}"><i class="bi-pencil"></i></a>
-        <!-- abuse of empty routerLink in order to get a "hand" cursor -->
-        <a *ngIf="auth.isLoggedIn && dataset.state != 'PUBLIC'" class="text-info col-1" [routerLink]=""
-          (click)="openUploadDialog(dataset)"><i class="bi-cloud-upload" data-toggle="tooltip" data-placement="top"
-            title="upload files"></i></a>
-        <a *ngIf="auth.isLoggedIn && dataset.state != 'PUBLIC'" class="text-warning col-1" [routerLink]=""
-          (click)="initMPUDialog(dataset.id)"><i class="bi-diagram-3" data-toggle="tooltip" data-placement="top"
-            title="upload file in chunks"></i></a>
-        <a *ngIf="auth.isLoggedIn && dataset.state != 'PUBLIC'" class="text-success col-1" [routerLink]=""
-          (click)="publish(dataset.id, dataset.modificationDate)"><i class="bi-unlock" data-toggle="tooltip"
-            data-placement="top" title="publish"></i></a>
-=======
         <a *ngIf="auth.isLoggedIn && dataset.dataset.state != 'WITHDRAWN'" class="text-primary col-1"
           [routerLink]="['/rest/set-editor', dataset.id]" [queryParams]="{ lmd: dataset.modificationDate }"><i
             class="bi-pencil"></i></a>
@@ -82,7 +68,6 @@
             dataset.dataset.state == 'PUBLIC'
           " class="text-warning col-1" [routerLink]="" (click)="withdraw(dataset.id, dataset.modificationDate)"><i
             class="bi-x-square" data-toggle="tooltip" data-placement="top" title="withdraw"></i></a>
->>>>>>> Stashed changes
       </div>
       <div class="card-header">
         <h4>
