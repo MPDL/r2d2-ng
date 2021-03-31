@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpRequest, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, EMPTY, forkJoin, Observable, of, Subject, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import { ESTO, ITO, DatasetVersion, SearchResult, ESResult, UpdateStateDTO } from '../../shared/components/model/entities';
+import { ESTO, ITO, DatasetVersion, SearchResult, ESResult } from '../../shared/components/model/entities';
 import { environment } from '../../../environments/environment';
 import { AuthenticationService } from '../../core/services/authentication.service';
 import { ParamEncoder } from '../../core/services/interceptors/param-encoder';
@@ -132,7 +132,7 @@ export class R2d2Service {
   }
 
   publish(id, lmd): Observable<DatasetVersion> {
-    const body: UpdateStateDTO = {
+    const body: Partial<DatasetVersion> = {
       modificationDate: lmd,
       state: 'PUBLIC'
     };
@@ -142,7 +142,7 @@ export class R2d2Service {
   }
 
   withdraw(id, lmd): Observable<DatasetVersion> {
-    const body: UpdateStateDTO = {
+    const body: Partial<DatasetVersion> = {
       modificationDate: lmd,
       state: 'WITHDRAWN'
     };

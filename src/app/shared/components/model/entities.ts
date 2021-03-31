@@ -29,10 +29,12 @@ export interface DatasetVersion {
     dataset: Dataset;
   }
 
+/* use Partial<DatasetVersion>  
 export interface UpdateStateDTO {
     modificationDate: string;
     state: 'PUBLIC' | 'WITHDRAWN';
 }
+*/
 
 export interface Dataset {
     id: string;
