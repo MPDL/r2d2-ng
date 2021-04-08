@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Inject } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject, ElementRef } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { UploadService } from '../../services/upload.service';
 import { forkJoin } from 'rxjs';
@@ -11,7 +11,7 @@ import { MessageService } from '../../services/message.service';
 })
 export class MultiUploadComponent implements OnInit {
 
-  @ViewChild('file') file;
+  @ViewChild('file') file!: ElementRef;
   public parts: { file: File, part: string }[] = [];
   file_progress;
   current_progress;

@@ -17,7 +17,7 @@ export class DataStoreService<T> {
     private message: MessageService
   ) { }
 
-  list(uri): void {
+  list(uri: string): void {
     if (this.store.data.length > 0) {
       this.store.data = [];
       this.subject.next(Object.assign({}, this.store).data);
@@ -29,7 +29,7 @@ export class DataStoreService<T> {
       }, error => this.message.error(error));
   }
 
-  get(uri, property): void {
+  get(uri: string, property: keyof T): void {
     this.http.get<T>(uri)
       .subscribe(data => {
         let inStore = false;
@@ -46,7 +46,7 @@ export class DataStoreService<T> {
       }, error => this.message.error(error));
   }
 
-  create(uri, body: T): void {
+  create(uri: string, body: T): void {
     this.http.post<T>(uri, body)
       .subscribe(data => {
         this.store.data.push(data);
@@ -54,7 +54,7 @@ export class DataStoreService<T> {
       }, error => this.message.error(error));
   }
 
-  update(uri, body: T, property): void {
+  update(uri: string, body: T, property: keyof T): void {
     this.http.patch<T>(uri, body)
       .subscribe(data => {
         this.store.data.forEach((v, i) => {
@@ -66,7 +66,7 @@ export class DataStoreService<T> {
       }, error => this.message.error(error));
   }
 
-  delete(uri, id, property): void {
+  delete(uri: string, id: any, property: keyof T): void {
     this.http.delete(uri)
       .subscribe(resp => {
         this.store.data.forEach((v, i) => {
