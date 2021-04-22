@@ -14,10 +14,11 @@
                 <div class="navbar-text text-secondary h1">
                     <span>r2d2-ng&copy;</span>
                 </div>
-                <div class="navbar-text text-secondary mt-auto">r2d2(ng) &copy;lient (v{{version}})</div>
+                <div class="navbar-text text-secondary mt-auto">v{{version}}</div>
             </div>
             <div class="d-flex ms-auto">
                 <r2d2-authentication></r2d2-authentication>
+                <span *ngIf="auth.isLoggedIn" class="nav-item nav-link text-info">{{user.person.familyName}}</span>
                 <a *ngIf="auth.isAdmin" [routerLink]="['/admin']" class="nav-item nav-link text-warning">Admin</a>
                 <!--<a [routerLink]="['/rest']" class="nav-item nav-link text-success">RestDAO</a>-->
                 <!--<a [routerLink]="['/files']" class="nav-item nav-link text-primary">Files</a>-->

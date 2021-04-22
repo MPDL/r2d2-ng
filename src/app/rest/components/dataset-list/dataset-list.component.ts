@@ -8,8 +8,7 @@ import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'r2d2-dataset-list',
-  templateUrl: './dataset-list.component.html',
-  styleUrls: ['./dataset-list.component.scss']
+  templateUrl: './dataset-list.component.html'
 })
 export class DatasetListComponent implements OnInit {
 

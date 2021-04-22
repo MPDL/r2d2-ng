@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'r2d2-foot',
-  templateUrl: './foot.component.html',
-  styleUrls: ['./foot.component.scss']
+  templateUrl: './foot.component.html'
 })
 export class FootComponent implements OnInit {
 

@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'r2d2-start',
-  templateUrl: './start.component.html',
-  styleUrls: ['./start.component.scss']
+  templateUrl: './start.component.html'
 })
 export class StartComponent implements OnInit {
 

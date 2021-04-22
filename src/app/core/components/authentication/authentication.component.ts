@@ -11,8 +11,7 @@ import { EMPTY } from 'rxjs';
 
 @Component({
   selector: 'r2d2-authentication',
-  templateUrl: './authentication.component.html',
-  styleUrls: ['./authentication.component.scss']
+  templateUrl: './authentication.component.html'
 })
 export class AuthenticationComponent implements OnInit {
 

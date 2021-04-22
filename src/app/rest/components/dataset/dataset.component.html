@@ -57,19 +57,19 @@
             data-placement="top" title="withdraw"></i></a>
       </div>
       <div class="card-header">
-        <h4>
+        <!-- h4>
           {{ dataset?.id }}
           <b class="text-primary">{{ dataset.versionNumber }} </b>
           <small class="text-info">{{ dataset?.state }} </small><small>{{ dataset.modificationDate }}</small>
-        </h4>
+        </h4 -->
+        <h4>{{ dataset.metadata.title }}</h4>
       </div>
       <div class="card-body">
-        <pre>{{ dataset?.metadata | json }}</pre>
+        <!-- <pre>{{ dataset?.metadata | json }}</pre> -->
         <!-- Dataset View starts here -->
 
         <div class="row">
           <div class="col-12">
-            <h4>{{ dataset.metadata.title }}</h4>
             <div class="row py-1">
               <div class="col-sm-12 col-md-2">
                 <strong>Author/s</strong>
@@ -181,7 +181,7 @@
               <div class="col-sm-12 col-md-2">
                 <strong>Licence</strong>
               </div>
-              <div class="col-sm-12 col-md-10">
+              <div *ngIf="dataset?.metadata.license" class="col-sm-12 col-md-10">
                 <span>{{ dataset.metadata.license.name }} </span>
               </div>
             </div>

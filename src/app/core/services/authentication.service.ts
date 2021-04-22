@@ -41,7 +41,8 @@ export class AuthenticationService {
   }
 
   get isLoggedIn(): boolean {
-    return this.isLoggedIn_subject.value;
+    // return this.isLoggedIn_subject.value; // TO-DO
+    return this.autoLogin();
   }
 
   set isLoggedIn(bool) {
@@ -81,10 +82,24 @@ export class AuthenticationService {
               this.isAdmin = true;
             }
           }
+          console.log("on Auth service");
+          console.log(JSON.stringify(this.user));
+          sessionStorage.setItem('user', JSON.stringify(this.user)); // Vila 2021.04.13
+          sessionStorage.setItem('token', JSON.stringify(this.token))
         } else {
           this.message.error(response.status + ' ' + response.statusText);
         }
       }));
+  }
+
+  autoLogin(): boolean {
+    console.log("on autoLogin");
+    this.token =  JSON.parse(sessionStorage.getItem('token'));
+    if (this.token) {
+      this.user = JSON.parse(sessionStorage.getItem('user') || ' ');
+      return true;
+    } 
+    return false;
   }
 
   logout(): void {
@@ -92,6 +107,7 @@ export class AuthenticationService {
     this.isAdmin = false;
     this.token = null;
     this.user = null;
+    sessionStorage.clear();
   }
 
   register(request_details): Observable<object> {

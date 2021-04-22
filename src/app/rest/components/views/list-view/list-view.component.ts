@@ -3,8 +3,7 @@ import { DatasetVersion } from '../../../../shared/components/model/entities';
 
 @Component({
   selector: 'r2d2-list-view',
-  templateUrl: './list-view.component.html',
-  styleUrls: ['./list-view.component.scss']
+  templateUrl: './list-view.component.html'
 })
 export class ListViewComponent implements OnInit {
 

@@ -6,8 +6,7 @@ import { MessageService } from '../../../../shared/services/message.service';
 
 @Component({
   selector: 'r2d2-registration',
-  templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.scss']
+  templateUrl: './registration.component.html'
 })
 export class RegistrationComponent implements OnInit {
 
