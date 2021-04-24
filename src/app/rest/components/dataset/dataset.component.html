@@ -40,21 +40,25 @@
     <div class="card col-8">
       <div class="button row" style="font-size: 2rem">
         <a class="text-secondary col-1" [routerLink]="['/rest/sets']"><i class="bi-list-ol"></i></a>
-        <a *ngIf="auth.isLoggedIn && dataset.dataset.state != 'WITHDRAWN'" class="text-primary col-1" [routerLink]="['/rest/set-editor', dataset.id]"
-          [queryParams]="{lmd:dataset.modificationDate}"><i class="bi-pencil"></i></a>
+        <a *ngIf="auth.isLoggedIn && dataset.dataset.state != 'WITHDRAWN'" class="text-primary col-1"
+          [routerLink]="['/rest/set-editor', dataset.id]" [queryParams]="{lmd:dataset.modificationDate}"><i
+            class="bi-pencil"></i></a>
         <!-- abuse of empty routerLink in order to get a "hand" cursor -->
-        <a *ngIf="auth.isLoggedIn && dataset.state != 'PUBLIC' && dataset.dataset.state != 'WITHDRAWN'" class="text-info col-1" [routerLink]=""
-          (click)="openUploadDialog(dataset)"><i class="bi-cloud-upload" data-toggle="tooltip" data-placement="top"
-            title="upload files"></i></a>
-        <a *ngIf="auth.isLoggedIn && dataset.state != 'PUBLIC' && dataset.dataset.state != 'WITHDRAWN'" class="text-warning col-1" [routerLink]=""
-          (click)="initMPUDialog(dataset.id)"><i class="bi-diagram-3" data-toggle="tooltip" data-placement="top"
-            title="upload file in chunks"></i></a>
-        <a *ngIf="auth.isLoggedIn && dataset.state != 'PUBLIC' && dataset.dataset.state != 'WITHDRAWN'" class="text-success col-1" [routerLink]=""
-          (click)="publish(dataset.id, dataset.modificationDate)"><i class="bi-unlock" data-toggle="tooltip"
-            data-placement="top" title="publish"></i></a>
-        <a *ngIf="auth.isLoggedIn && dataset.state=='PUBLIC' && dataset.dataset.state == 'PUBLIC'" class="text-warning col-1" [routerLink]=""
-          (click)="withdraw(dataset.id, dataset.modificationDate)"><i class="bi-x-square" data-toggle="tooltip"
-            data-placement="top" title="withdraw"></i></a>
+        <a *ngIf="auth.isLoggedIn && dataset.state != 'PUBLIC' && dataset.dataset.state != 'WITHDRAWN'"
+          class="text-info col-1" [routerLink]="" (click)="openUploadDialog(dataset)"><i class="bi-cloud-upload"
+            data-toggle="tooltip" data-placement="top" title="upload files"></i></a>
+        <a *ngIf="auth.isLoggedIn && dataset.state != 'PUBLIC' && dataset.dataset.state != 'WITHDRAWN'"
+          class="text-warning col-1" [routerLink]="" (click)="initMPUDialog(dataset.id)"><i class="bi-diagram-3"
+            data-toggle="tooltip" data-placement="top" title="upload file in chunks"></i></a>
+        <a *ngIf="auth.isLoggedIn && dataset.state != 'PUBLIC' && dataset.dataset.state != 'WITHDRAWN'"
+          class="text-success col-1" [routerLink]="" (click)="publish(dataset.id, dataset.modificationDate)"><i
+            class="bi-unlock" data-toggle="tooltip" data-placement="top" title="publish"></i></a>
+        <a *ngIf="auth.isLoggedIn && dataset.state=='PUBLIC' && dataset.dataset.state == 'PUBLIC'"
+          class="text-warning col-1" [routerLink]="" (click)="withdraw(dataset.id, dataset.modificationDate)"><i
+            class="bi-x-square" data-toggle="tooltip" data-placement="top" title="withdraw"></i></a>
+        <a *ngIf="auth.isLoggedIn && dataset.state=='PRIVATE'"
+          class="text-light col-1" [routerLink]="" (click)="review_token(dataset.id)"><i
+            class="bi-eye" data-toggle="tooltip" data-placement="top" title="get review token"></i></a>
       </div>
       <div class="card-header">
         <!-- h4>
@@ -127,7 +131,7 @@
                   <div *ngIf="dataset?.files">
                     <p>[Button_Download_all]</p>
                   </div>
-                 
+
                 </div>
               </div>
             </div>
@@ -152,11 +156,12 @@
                 <span>{{ dataset.metadata.title }},</span>
                 <div *ngFor="let person of dataset.metadata.authors">
                   <div *ngFor="let affiliation of person.affiliations">
-                    <span class="col-sm-2 text-start text-truncate" [innerHtml]="affiliation.organization"></span>,&nbsp;                    
+                    <span class="col-sm-2 text-start text-truncate"
+                      [innerHtml]="affiliation.organization"></span>,&nbsp;
                   </div>
                 </div>
                 <span>{{ dataset.metadata.doi }}</span>
-              </div>  
+              </div>
             </div>
 
             <div class="row py-1">
@@ -204,11 +209,11 @@
               <div class="col-sm-12 col-md-10">
                 <div *ngFor="let publication of dataset.metadata.correspondingPapers">
                   <div class="py-1">
-                    <span class="col-sm-2 text-start text-truncate" [innerHtml]="publication.title"></span>,&nbsp;    
+                    <span class="col-sm-2 text-start text-truncate" [innerHtml]="publication.title"></span>,&nbsp;
                     <span class="col-sm-2 text-start text-truncate" [innerHtml]="publication.url"></span>
                   </div>
                 </div>
-              </div>  
+              </div>
             </div>
 
             <div class="row py-1">

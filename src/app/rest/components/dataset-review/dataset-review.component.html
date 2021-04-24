@@ -1,0 +1,216 @@
+<div class="container-fluid">
+    <div *ngIf="dataset$ | async as dataset" class="mt-0 row">
+      <div *ngIf="auth.isLoggedIn; else no_staging" class="card col-4">
+        <div class="card-header">
+          <h5>Your floating files ...</h5>
+        </div>
+        <div class="card-body">
+          
+        </div>
+      </div>
+  
+      <ng-template #no_staging>
+        <div class="card col-4">
+          <div class="card-header">
+            <h4>placeholder ...</h4>
+          </div>
+          <div class="card-body"></div>
+        </div>
+      </ng-template>
+  
+      <div class="card col-8">
+        <div class="card-header">
+          <!-- h4>
+            {{ dataset?.id }}
+            <b class="text-primary">{{ dataset.versionNumber }} </b>
+            <small class="text-info">{{ dataset?.state }} </small><small>{{ dataset.modificationDate }}</small>
+          </h4 -->
+          <h4>{{ dataset.metadata.title }}</h4>
+        </div>
+        <div class="card-body">
+          <!-- <pre>{{ dataset?.metadata | json }}</pre> -->
+          <!-- Dataset View starts here -->
+  
+          <div class="row">
+            <div class="col-12">
+              <div class="row py-1">
+                <div class="col-sm-12 col-md-2">
+                  <strong>Author/s</strong>
+                </div>
+                <div class="col-sm-12 col-md-10">
+                  <div *ngFor="let person of dataset.metadata?.authors">
+                    <div class="py-1">
+                      <span class="col-sm-2 text-start text-truncate" [innerHtml]="person.familyName"></span>,
+                      <span class="col-sm-2 text-start text-truncate" [innerHtml]="person.givenName"></span>
+                      <div *ngFor="let affiliation of person.affiliations">
+                        <br />
+                        <span class="col-sm-2 text-start text-truncate" [innerHtml]="affiliation.organization"></span>
+                        <span class="col-sm-2 text-start text-truncate" [innerHtml]="affiliation.department"></span>
+                      </div>
+                      <div *ngIf="person.orcid">
+                        <br />Orcid: <span class="col-sm-2 text-start text-truncate" [innerHtml]="person.orcid"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="row py-1">
+                <div class="col-sm-12 col-md-2">
+                  <strong>Description</strong>
+                </div>
+                <div class="col-sm-12 col-md-10">
+                  <span>{{ dataset.metadata.description }}</span>
+                </div>
+              </div>
+  
+              <div *ngIf="dataset?.files" class="list-group-flush">
+                <div class="row py-1">
+                  <div class="col-sm-12 col-md-2">
+                    <strong>Files</strong>
+                  </div>
+                  <div class="col-sm-12 col-md-10">
+                    <div class="list-group-item list-group-item-action py-0 d-flex flex-sm-row align-items-center"
+                      *ngFor="let file of dataset?.files" (click)="download(file)">
+                      <span class="col-sm-4 text-start me-2" [innerHtml]="file.filename"></span>
+                      <!--span class="col-sm-4 text-end me-2" [innerHtml]="file.id"></span-->
+                      <span class="col-sm-2 text-start text-truncate" [innerHtml]="file.size"></span>
+                      <span class="col-sm-2 text-start text-truncate" [innerHtml]="file.format"></span>
+                      <span class="col-sm-3 text-start text-truncate" [innerHtml]="file.checksum"></span>
+                      <!--div class="col-sm-1 text-end">
+                        <input
+                          type="submit"
+                          class="btn btn-outline-secondary btn-sm"
+                          (click)="remove(dataset, file); $event.stopPropagation()"
+                          name="delete"
+                          value="x"
+                        />
+                      </div-->
+                    </div>
+                    <div *ngIf="dataset?.files">
+                      <p>[Button_Download_all]</p>
+                    </div>
+  
+                  </div>
+                </div>
+              </div>
+  
+              <div class="row py-1">
+                <div class="col-sm-12 col-md-2">
+                  <strong>DOI</strong>
+                </div>
+                <div class="col-sm-12 col-md-10">
+                  <span>{{ dataset.metadata.doi }}</span>
+                </div>
+              </div>
+  
+              <div class="row py-1">
+                <div class="col-sm-12 col-md-2">
+                  <strong>Citation</strong>
+                </div>
+                <div class="col-sm-12 col-md-10">
+                  <div *ngFor="let person of dataset.metadata.authors">
+                    <span class="col-sm-2 text-start text-truncate" [innerHtml]="person.familyName"></span>,&nbsp;
+                  </div>
+                  <span>{{ dataset.metadata.title }},</span>
+                  <div *ngFor="let person of dataset.metadata.authors">
+                    <div *ngFor="let affiliation of person.affiliations">
+                      <span class="col-sm-2 text-start text-truncate"
+                        [innerHtml]="affiliation.organization"></span>,&nbsp;
+                    </div>
+                  </div>
+                  <span>{{ dataset.metadata.doi }}</span>
+                </div>
+              </div>
+  
+              <div class="row py-1">
+                <div class="col-sm-12 col-md-2">
+                  <strong>Genres</strong>
+                </div>
+                <div class="col-sm-12 col-md-10">
+                  <span>{{ dataset.metadata.genres }}</span>
+                </div>
+              </div>
+  
+              <div class="row py-1">
+                <div class="col-sm-12 col-md-2">
+                  <strong>Keywords</strong>
+                </div>
+                <div class="col-sm-12 col-md-10">
+                  <span>{{ dataset.metadata.keywords }}</span>
+                </div>
+              </div>
+  
+              <div class="row py-1">
+                <div class="col-sm-12 col-md-2">
+                  <strong>Licence</strong>
+                </div>
+                <div *ngIf="dataset?.metadata.license" class="col-sm-12 col-md-10">
+                  <span>{{ dataset.metadata.license.name }} </span>
+                </div>
+              </div>
+  
+              <div *ngIf="dataset?.state === 'PUBLIC'">
+                <div class="row py-1">
+                  <div class="col-sm-12 col-md-2">
+                    <strong>Dates</strong>
+                  </div>
+                  <div class="col-sm-12 col-md-10">
+                    <span>{{ dataset.modificationDate }}</span>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="row py-1">
+                <div class="col-sm-12 col-md-2">
+                  <strong>Corresponding Papers</strong>
+                </div>
+                <div class="col-sm-12 col-md-10">
+                  <div *ngFor="let publication of dataset.metadata.correspondingPapers">
+                    <div class="py-1">
+                      <span class="col-sm-2 text-start text-truncate" [innerHtml]="publication.title"></span>,&nbsp;
+                      <span class="col-sm-2 text-start text-truncate" [innerHtml]="publication.url"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="row py-1">
+                <div class="col-sm-12 col-md-2">
+                  <strong>Language</strong>
+                </div>
+                <div class="col-sm-12 col-md-10">
+                  <span>{{ dataset.metadata.language }}</span>
+                </div>
+              </div>
+  
+              <!--div class="row py-1">
+                <div class="col-sm-12 col-md-2">
+                  <strong>Funding</strong>
+                </div>
+                <div class="col-sm-12 col-md-10">
+                  <div *ngFor="let proyect of dataset.metadata.funding">
+                    <div class="py-1">{{ proyect.title }}, {{ proyect.url }}</div>
+                  </div>
+                </div>
+              </div-->
+  
+              <!--div class="row py-1">
+                <div class="col-sm-12 col-md-2">
+                  <strong>Geolocation</strong>
+                </div>
+                <div class="col-sm-12 col-md-10">
+                  {{ dataset.metadata.geolocation.latitude }}, {{ dataset.metadata.geolocation.longitude }}
+                  &nbsp;{{ dataset.metadata.geolocation.description }}
+                  <span></span>
+                </div>
+              </div-->
+  
+            </div>
+          </div>
+  
+          <!-- Dataset View ends here -->
+        </div>
+      </div>
+    </div>
+  </div>

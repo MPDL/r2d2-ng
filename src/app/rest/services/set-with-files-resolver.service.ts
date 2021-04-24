@@ -23,7 +23,7 @@ export class SetWithFilesResolverService implements Resolve<DatasetVersion>{
     if (id === 'new') {
       return EMPTY;
     } else {
-      return this.service.buildSetWithFiles(id);
+      return this.service.buildSetWithFiles(id, null);
     }
   }
 

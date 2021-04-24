@@ -224,4 +224,12 @@ export class DatasetComponent implements OnInit {
       },
         err => this.message.error(err));
   }
+
+  review_token(id): void {
+    this.service.review_token(id)
+      .subscribe(rt => {
+        this.message.info('token 4 ' + id + '\n' + rt.token + '\n' + this.router.url.concat('/').concat(rt.token));
+      },
+      err => this.message.error(err));
+  }
 }
