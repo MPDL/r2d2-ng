@@ -92,9 +92,14 @@ export class R2d2Service {
       );
   }
 
-  getFiles(id, version?): Observable<SearchResult<R2D2File>> {
-    if (version) {
-
+  getFiles(id, token?): Observable<SearchResult<R2D2File>> {
+    const params = new HttpParams({ encoder: new ParamEncoder() })
+    .set('reviewToken', token);
+    if (token) {
+      return this.http.get<SearchResult<R2D2File>>(this.apiUrl + `/${id}/files`, { params})
+      .pipe(
+        map(response => response)
+      );
     }
     return this.http.get<SearchResult<R2D2File>>(this.apiUrl + `/${id}/files`)
       .pipe(
@@ -171,9 +176,15 @@ export class R2d2Service {
     return of('NOT IMPLEMENTED YET!');
   }
 
-  download(file_id): Observable<Blob> {
-    const params = new HttpParams()
+  download(file_id, review_token): Observable<Blob> {
+    let params: HttpParams;
+    if (review_token) {
+      params = new HttpParams()
+      .append('download', 'true').append('reviewToken', review_token);
+    } else {
+      params = new HttpParams()
       .append('download', 'true');
+    }
     return this.http.get(`${this.fileUrl}/${file_id}/content`, {
       params,
       responseType: 'blob'
@@ -191,20 +202,30 @@ export class R2d2Service {
 
   buildSetWithFiles(id, review_token): Observable<DatasetVersion> {
     let set: Observable<DatasetVersion> = EMPTY;
+    let files: Observable<R2D2File[]> = EMPTY;
     if (review_token) {
       set = this.review(id, review_token);
+      files = this.getFiles(id, review_token).pipe(
+        map(response => {
+          if (response.total > 0) {
+            return response.hits.map(f => f.source);
+          } else {
+            return [];
+          }
+        })
+      );
     } else {
       set = this.get(id);
+      files = this.getFiles(id).pipe(
+        map(response => {
+          if (response.total > 0) {
+            return response.hits.map(f => f.source);
+          } else {
+            return [];
+          }
+        })
+      );
     }
-    const files = this.getFiles(id).pipe(
-      map(response => {
-        if (response.total > 0) {
-          return response.hits.map(f => f.source);
-        } else {
-          return [];
-        }
-      })
-    );
     return forkJoin([set, files])
       .pipe(
         map(result => {

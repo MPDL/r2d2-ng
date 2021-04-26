@@ -26,12 +26,13 @@ export class DatasetReviewComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.params.id;
     const token = this.route.snapshot.params.review_token;
-    //this.dataset$ = this.service.buildSetWithFiles(id, token);
-    this.dataset$ = this.service.review(id, token);
+    this.dataset$ = this.service.buildSetWithFiles(id, token);
+    // this.dataset$ = this.service.review(id, token);
   }
 
   download(file): void {
-    this.service.download(file.id)
+    const token = this.route.snapshot.params.review_token;
+    this.service.download(file.id, token)
       .subscribe(response => {
         if (response) {
           this.createLink(response, file.filename);

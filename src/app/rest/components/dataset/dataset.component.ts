@@ -179,7 +179,7 @@ export class DatasetComponent implements OnInit {
   }
 
   download(file): void {
-    this.service.download(file.id)
+    this.service.download(file.id, null)
       .subscribe(response => {
         if (response) {
           this.createLink(response, file.filename);
