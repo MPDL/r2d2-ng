@@ -25,6 +25,9 @@ import { HighLightJsonPipe } from './services/high-light-json.pipe';
 import { LicenseComponent } from './components/model/license/license.component';
 import { GrantComponent } from './components/model/grant/grant.component';
 
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
 
 @NgModule({
   imports: [
@@ -39,6 +42,9 @@ import { GrantComponent } from './components/model/grant/grant.component';
     MatListModule,
     MatProgressBarModule,
     MatSliderModule,
+
+    MatSidenavModule,
+    MatToolbarModule
   ],
   exports: [
     FormsModule,
@@ -60,7 +66,10 @@ import { GrantComponent } from './components/model/grant/grant.component';
     PublicationComponent,
     LicenseComponent,
     HighLightJsonPipe,
-    GrantComponent
+    GrantComponent,
+
+    MatSidenavModule,
+    MatToolbarModule
   ],
   declarations: [
     PageNotFoundComponent,

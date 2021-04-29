@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from '../../../../environments/environment';
 import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
@@ -9,9 +8,12 @@ import { AuthenticationService } from '../../services/authentication.service';
 })
 export class HeadComponent implements OnInit {
 
+<<<<<<< Updated upstream
   version = environment.ver;
   user = null;
 
+=======
+>>>>>>> Stashed changes
   constructor(
     public auth: AuthenticationService
   ) { }

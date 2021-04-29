@@ -1,4 +1,5 @@
 <nav class="navbar navbar-expand">
+<<<<<<< Updated upstream
     <div class="container-fluid">
         <div class="navbar-brand">
             <a [routerLink]="['/rest']">
@@ -23,6 +24,30 @@
                 <!--<a [routerLink]="['/rest']" class="nav-item nav-link text-success">RestDAO</a>-->
                 <!--<a [routerLink]="['/files']" class="nav-item nav-link text-primary">Files</a>-->
             </div>
-        </div>
+=======
+  <div class="container-fluid">
+    <div class="navbar-brand">
+      <a [routerLink]="['/rest']">
+        <img src="assets/images/edmond/logo_for_bright.png" />
+      </a>
     </div>
+    <div class="d-flex flex-row justify-content-between">
+      <div class="navbar-nav">
+        <div class="d-flex ms-auto">
+
+          <span *ngIf="auth.isLoggedIn" class="nav-item nav-link text-info">{{
+            auth.user.person.familyName
+          }}</span>
+          <a
+            *ngIf="auth.isAdmin"
+            [routerLink]="['/admin']"
+            class="nav-item nav-link text-warning"
+            >Admin</a
+          >
+>>>>>>> Stashed changes
+        </div>
+        <r2d2-authentication></r2d2-authentication>
+      </div>
+    </div>
+  </div>
 </nav>
