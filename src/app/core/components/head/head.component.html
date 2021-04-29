@@ -5,19 +5,16 @@
         <img src="assets/images/edmond/logo_for_bright.png" />
       </a>
     </div>
+    <a *ngIf="auth.isLoggedIn" [routerLink]="['/rest']" class="nav-item nav-link text-primary">Home</a>
     <div class="d-flex flex-row justify-content-between">
       <div class="navbar-nav">
-        <div class="d-flex ms-auto">
-
-          <span *ngIf="auth.isLoggedIn" class="nav-item nav-link text-info">{{
+        <div class="d-flex ms-auto align-self-center">
+          <span *ngIf="auth.isLoggedIn" class="text-success">
+            <mat-icon>perm_identity</mat-icon>{{
             auth.user.person.familyName
-          }}</span>
-          <a
-            *ngIf="auth.isAdmin"
-            [routerLink]="['/admin']"
-            class="nav-item nav-link text-warning"
-            >Admin</a
-          >
+          }}
+          </span>
+          <a *ngIf="auth.isAdmin" [routerLink]="['/admin']" class="nav-item nav-link text-warning">Admin</a>
         </div>
         <r2d2-authentication></r2d2-authentication>
       </div>

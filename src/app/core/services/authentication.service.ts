@@ -14,47 +14,49 @@ export class AuthenticationService {
   private tokenUrl: string = environment.r2d2_rest_uri.replace('datasets', 'login');
   private registrationUrl: string = environment.r2d2_rest_uri.replace('datasets', 'register');
 
-  private token_subject = new BehaviorSubject<string>(null);
-  private user_subject = new BehaviorSubject<any>(null);
-  private isLoggedIn_subject = new BehaviorSubject<boolean>(false);
-  private isAdmin_subject = new BehaviorSubject<boolean>(false);
-
   constructor(
     private http: HttpClient,
     private message: MessageService
   ) { }
 
   get token(): string {
-    return this.token_subject.value;
+    return sessionStorage.getItem('token');
   }
 
   set token(token) {
-    this.token_subject.next(token);
+    sessionStorage.setItem('token', token);
   }
 
   get user(): any {
-    return this.user_subject.value;
+    return JSON.parse(sessionStorage.getItem('user'));
   }
 
   set user(user) {
-    this.user_subject.next(user);
+    sessionStorage.setItem('user', JSON.stringify(user));
   }
 
   get isLoggedIn(): boolean {
-    // return this.isLoggedIn_subject.value; // TO-DO
-    return this.autoLogin();
+    if (sessionStorage.getItem('isLoggedIn')) {
+      return !!JSON.parse(sessionStorage.getItem('isLoggedIn').toLowerCase());
+    } else {
+      return false;
+    }
   }
 
   set isLoggedIn(bool) {
-    this.isLoggedIn_subject.next(bool);
+    sessionStorage.setItem('isLoggedIn', String(bool));
   }
 
   get isAdmin(): boolean {
-    return this.isAdmin_subject.value;
+    if (sessionStorage.getItem('isAdmin')) {
+      return !!JSON.parse(sessionStorage.getItem('isAdmin').toLowerCase());
+    } else {
+      return false;
+    }
   }
 
   set isAdmin(bool) {
-    this.isAdmin_subject.next(bool);
+    sessionStorage.setItem('isAdmin', String(bool));
   }
 
   login(mail, pwd): Observable<void> {
@@ -68,9 +70,9 @@ export class AuthenticationService {
     }).pipe(
       map((response) => {
         let token = response.headers.get('Authorization');
-        this.user = response.body;
-        const roles: string[] = this.user.grants.map(g => g.role);
-
+        const user: any = response.body;
+        const roles: string[] = user.grants.map(g => g.role);
+        this.user = user;
         if (token != null) {
           token = token.slice(token.lastIndexOf(' ') + 1);
           this.token = token;
@@ -82,31 +84,13 @@ export class AuthenticationService {
               this.isAdmin = true;
             }
           }
-          console.log("on Auth service");
-          console.log(JSON.stringify(this.user));
-          sessionStorage.setItem('user', JSON.stringify(this.user)); // Vila 2021.04.13
-          sessionStorage.setItem('token', JSON.stringify(this.token))
         } else {
           this.message.error(response.status + ' ' + response.statusText);
         }
       }));
   }
 
-  autoLogin(): boolean {
-    console.log("on autoLogin");
-    this.token =  JSON.parse(sessionStorage.getItem('token'));
-    if (this.token) {
-      this.user = JSON.parse(sessionStorage.getItem('user') || ' ');
-      return true;
-    } 
-    return false;
-  }
-
   logout(): void {
-    this.isLoggedIn = false;
-    this.isAdmin = false;
-    this.token = null;
-    this.user = null;
     sessionStorage.clear();
   }
 

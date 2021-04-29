@@ -7,6 +7,7 @@ import { environment } from '../../../environments/environment';
 import { AuthenticationService } from '../../core/services/authentication.service';
 import { ParamEncoder } from '../../core/services/interceptors/param-encoder';
 import { R2D2File } from '../../shared/components/model/entities';
+import { R } from '@angular/cdk/keycodes';
 
 @Injectable({
   providedIn: 'root'
@@ -82,9 +83,23 @@ export class R2d2Service {
       );
   }
 
-  getFiles(id, version?): Observable<SearchResult<R2D2File>> {
-    if (version) {
+  review(id, token): Observable<DatasetVersion> {
+    const params = new HttpParams({ encoder: new ParamEncoder() })
+    .set('reviewToken', token);
+    return this.http.get<DatasetVersion>(this.apiUrl + '/' + id, { params })
+      .pipe(
+        map(response => response)
+      );
+  }
 
+  getFiles(id, token?): Observable<SearchResult<R2D2File>> {
+    const params = new HttpParams({ encoder: new ParamEncoder() })
+    .set('reviewToken', token);
+    if (token) {
+      return this.http.get<SearchResult<R2D2File>>(this.apiUrl + `/${id}/files`, { params})
+      .pipe(
+        map(response => response)
+      );
     }
     return this.http.get<SearchResult<R2D2File>>(this.apiUrl + `/${id}/files`)
       .pipe(
@@ -151,13 +166,25 @@ export class R2d2Service {
     );
   }
 
+  review_token(id): Observable<any> {
+    return this.http.post(this.apiUrl + '/' + id + '/reviewToken', null).pipe(
+      map(response => response)
+    );
+  }
+
   delete(id): Observable<string> {
     return of('NOT IMPLEMENTED YET!');
   }
 
-  download(file_id): Observable<Blob> {
-    const params = new HttpParams()
+  download(file_id, review_token): Observable<Blob> {
+    let params: HttpParams;
+    if (review_token) {
+      params = new HttpParams()
+      .append('download', 'true').append('reviewToken', review_token);
+    } else {
+      params = new HttpParams()
       .append('download', 'true');
+    }
     return this.http.get(`${this.fileUrl}/${file_id}/content`, {
       params,
       responseType: 'blob'
@@ -173,17 +200,32 @@ export class R2d2Service {
       );
   }
 
-  buildSetWithFiles(id): Observable<DatasetVersion> {
-    const set = this.get(id);
-    const files = this.getFiles(id).pipe(
-      map(response => {
-        if (response.total > 0) {
-          return response.hits.map(f => f.source);
-        } else {
-          return [];
-        }
-      })
-    );
+  buildSetWithFiles(id, review_token): Observable<DatasetVersion> {
+    let set: Observable<DatasetVersion> = EMPTY;
+    let files: Observable<R2D2File[]> = EMPTY;
+    if (review_token) {
+      set = this.review(id, review_token);
+      files = this.getFiles(id, review_token).pipe(
+        map(response => {
+          if (response.total > 0) {
+            return response.hits.map(f => f.source);
+          } else {
+            return [];
+          }
+        })
+      );
+    } else {
+      set = this.get(id);
+      files = this.getFiles(id).pipe(
+        map(response => {
+          if (response.total > 0) {
+            return response.hits.map(f => f.source);
+          } else {
+            return [];
+          }
+        })
+      );
+    }
     return forkJoin([set, files])
       .pipe(
         map(result => {
@@ -194,7 +236,7 @@ export class R2d2Service {
   }
 
   reload(id): void {
-    this.buildSetWithFiles(id).subscribe(
+    this.buildSetWithFiles(id, null).subscribe(
       dataset => this.set_bs.next(dataset)
     );
   }

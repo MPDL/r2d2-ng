@@ -8,6 +8,7 @@ import { DatasetComponent } from './components/dataset/dataset.component';
 import { FacetComponent } from './components/views/facet/facet.component';
 import { RestComponent } from './rest.component';
 import { ListViewComponent } from './components/views/list-view/list-view.component';
+import { DatasetReviewComponent } from './components/dataset-review/dataset-review.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ListViewComponent } from './components/views/list-view/list-view.compon
     FacetComponent,
     RestComponent,
     ListViewComponent,
+    DatasetReviewComponent,
   ],
   imports: [
     CommonModule,

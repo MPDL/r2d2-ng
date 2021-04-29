@@ -1,28 +1,37 @@
 <div class="container-fluid">
     <div class="mt-0 row">
-        <div class="card col-3">
+        <div class="card col-2">
             <div class="card-body">
                 <p>placeholder 4 facets</p>
-                <!--            <r2d2-facet [list]=true [chunk_size]=10 [title]="'state'" [item_array]="state_obs" (notice)="facetNotice($event)"></r2d2-facet>
+                <ul>
+                    <li>State</li>
+                    <li>Genre</li>
+                    <li>Publischer</li>
+                </ul>
+           <!-- <r2d2-facet [list]=true [chunk_size]=10 [title]="'state'" [item_array]="state_obs" (notice)="facetNotice($event)"></r2d2-facet>
                 <r2d2-facet [list]=true [chunk_size]=10 [title]="'publisher'" [item_array]="publisher_obs" (notice)="facetNotice($event)"></r2d2-facet>
                 <r2d2-facet [list]=false [chunk_size]=10 [title]="'genre'" [item_array]="genres_obs" (notice)="facetNotice($event)"></r2d2-facet>
                 <r2d2-facet [list]=true [chunk_size]=5 [title]="'created'" [item_array]="created_obs" (notice)="facetNotice($event)"></r2d2-facet>
             -->
             </div>
         </div>
-        <div class="card col-8">
-            <div class="card-header d-flex flex-sm-row px-0 align-items-center">
-                <div class="col-6 offset-1">
+        <div class="card col-10">
+            <div class="d-flex flex-sm-row px-0 align-items-center">
+                <div class="card-header col-6 offset-2">
                     <div class="input-group">
                         <input type="text" class="form-control form-control-sm" placeholder="search ..."
                             [(ngModel)]="search_term" (keyup.enter)="filter()" />
-                        <button class="btn btn-outline-secondary btn-sm" type="button" id="search-button"
-                            (click)="filter()">search</button>
+                        <button mat-icon-button
+                            (click)="filter()">
+                            <mat-icon>search</mat-icon>
+                        </button>
                     </div>
                 </div>
-                <input *ngIf="auth.isLoggedIn" type="submit"
+                <button mat-icon-button *ngIf="auth.isLoggedIn" type="submit"
                     class="col-1 ms-auto btn btn-outline-primary btn-sm text-truncate" name="add"
-                    value="add new dataset" (click)="addNewDataset()" />
+                    value="add new dataset" (click)="addNewDataset()">
+                    <mat-icon>add</mat-icon>
+                </button>
             </div>
             <div class="list-group-flush">
                 <div class="list-group-item list-group-item-action py-1"

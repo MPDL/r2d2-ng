@@ -179,7 +179,7 @@ export class DatasetComponent implements OnInit {
   }
 
   download(file): void {
-    this.service.download(file.id)
+    this.service.download(file.id, null)
       .subscribe(response => {
         if (response) {
           this.createLink(response, file.filename);
@@ -223,5 +223,13 @@ export class DatasetComponent implements OnInit {
         this.service.reload(set.id);
       },
         err => this.message.error(err));
+  }
+
+  review_token(id): void {
+    this.service.review_token(id)
+      .subscribe(rt => {
+        this.message.info('token 4 ' + id + '\n' + rt.token + '\n' + this.router.url.concat('/').concat(rt.token));
+      },
+      err => this.message.error(err));
   }
 }
