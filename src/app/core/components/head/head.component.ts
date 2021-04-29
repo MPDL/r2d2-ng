@@ -13,8 +13,6 @@ export class HeadComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.user = JSON.parse(sessionStorage.getItem('user'));
-    //this.user = this.auth.user(); // TO-DO
   }
 
 }
