@@ -1,20 +1,20 @@
 <div class="container-fluid">
     <div class="mt-0 row">
-        <div class="card col-3">
-            <div class="card-body">
-                <p>placeholder 4 anything</p>
-            </div>
-        </div>
-
-        <div class="card col-9 mt-2">
-            <div class="button row mb-3">
-                <a class="nav-link col-10 offset-2" (click)="datasetDetails()"><span class="text-primary"><i
-                            class="bi-info-circle me-2 text-secondary"
-                            style="font-size: 2rem;"></i>{{datasetId}}</span></a>
+        <div class="card col-10 mt-2">
+            <div class="d-flex flex-sm-row px-0 align-items-center">
+                <button mat-icon-button name="add" name="back" value="<-" (click)="datasetDetails()" style="font-size: 2rem;">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+                <span class="text-primary">
+                    <i class="me-2 text-secondary">
+                        {{datasetId}}
+                    </i>
+                </span>
             </div>
             <form *ngIf="datasetForm" [formGroup]="datasetForm" (ngSubmit)="onFormSubmit()">
+                <br>
                 <div class="row w-100 mb-1">
-                    <label for="ds-title" class="col-2 text-end form-label form-label-sm">title</label>
+                    <label for="ds-title" class="col-2 text-end form-label form-label-sm"><strong>title</strong></label>
                     <div class="col-10">
                         <input class="form-control form-control-sm" type="text" formControlName="title" id="ds-title"
                             required />
@@ -23,9 +23,9 @@
                         </r2d2-validation-errors>
                     </div>
                 </div>
-                <div class="row w-100">
+                <div class="row w-100 mb-1">
                     <!-- cause ou has also mb-1, no need here ...-->
-                    <label for="authors" class="col-2 text-end form-label form-label-sm">authors</label>
+                    <label for="authors" class="col-2 text-end form-label form-label-sm"><strong>authors</strong></label>
                     <div class="col-10">
                         <div formArrayName="authors" id="authors">
                             <div *ngFor="let author of datasetForm.controls['authors']['controls']; let i=index">
@@ -39,32 +39,32 @@
                     </div>
                 </div>
                 <div class="row w-100 mb-1">
-                    <label for="ds-description" class="col-2 text-end form-label form-label-sm">description</label>
+                    <label for="ds-description" class="col-2 text-end form-label form-label-sm"><strong>description</strong></label>
                     <div class="col-10">
                         <textarea class="form-control form-control-sm" rows="1" formControlName="description"
                             id="ds-description"></textarea>
                     </div>
                 </div>
                 <div class="row w-100 mb-1">
-                    <label for="ds-content" class="col-2 text-end form-label form-label-sm">doi</label>
+                    <label for="ds-content" class="col-2 text-end form-label form-label-sm"><strong>doi</strong></label>
                     <div class="col-10">
                         <input class="form-control form-control-sm" type="text" formControlName="doi" id="ds-doi" />
                     </div>
                 </div>
                 <div class="row w-100 mb-1">
-                    <label for="ds-genres" class="col-2 text-end form-label form-label-sm">genres</label>
+                    <label for="ds-genres" class="col-2 text-end form-label form-label-sm"><strong>genres</strong></label>
                     <div class="col-10">
                         <r2d2-chips [parent_form]="datasetForm" control_name="genres"></r2d2-chips>
                     </div>
                 </div>
                 <div class="row w-100 mb-1">
-                    <label for="ds-keywords" class="col-2 text-end form-label form-label-sm">keywords</label>
+                    <label for="ds-keywords" class="col-2 text-end form-label form-label-sm"><strong>keywords</strong></label>
                     <div class="col-10">
                         <r2d2-chips [parent_form]="datasetForm" control_name="keywords"></r2d2-chips>
                     </div>
                 </div>
                 <div class="row w-100 mb-0">
-                    <label for="ds-license" class="col-2 text-end form-label form-label-sm">license</label>
+                    <label for="ds-license" class="col-2 text-end form-label form-label-sm"><strong>license</strong></label>
                     <div class="col-10">
                         <div formGroupName="license" id="ds-license">
                             <r2d2-license [licenseForm]="$any(datasetForm.controls['license'])">
@@ -73,7 +73,7 @@
                     </div>
                 </div>
                 <div class="row w-100 mb-1">
-                    <label for="publications" class="col-2 text-end form-label form-label-sm">publications</label>
+                    <label for="publications" class="col-2 text-end form-label form-label-sm"><strong>publications</strong></label>
                     <div class="col-10">
                         <div formArrayName="correspondingPapers" id="correspondingPapers">
                             <div
@@ -88,14 +88,21 @@
                         </div>
                     </div>
                 </div>
+                <br>
                 <div class="row w-100">
                     <div class="col-3 offset-2">
-                        <input type="button" class="btn btn-outline-secondary btn-sm me-2" name="cancel" value="cancel"
+                        <input type="button" class="btn btn-outline-warning btn-sm me-2" name="cancel" value="cancel"
                             (click)="gotoList()" />
                         <input type="submit" class="btn btn-outline-secondary btn-sm" name="save" value="save" />
                     </div>
                 </div>
+                <br>
             </form>
+        </div>
+        <div class="card col-2">
+            <div class="card-body">
+                <p>placeholder ...</p>
+            </div>
         </div>
     </div>
 </div>

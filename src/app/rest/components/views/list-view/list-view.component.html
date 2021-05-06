@@ -15,7 +15,6 @@
                 <!--cols is not required for flex-row, but may to used to limit row length ...-->
                 <!--<span class="col-8" [innerHtml]="dataset.metadata.title"></span>-->
                 <strong class="col-10" [innerHtml]="dataset.metadata.title"></strong>
-                <small class="col-sm-2 ms-auto text-secondary" [innerHtml]="'num of files n/a in index!'"></small>
             </div>
             <div class="d-flex flex-sm-row">
                 <small class="col-10 text-muted" [innerHtml]="dataset.metadata.description"></small>
@@ -30,7 +29,7 @@
                 </div>
             </div>
             <div class="d-flex flex-sm-row">
-
+                <small class="col-10 text-warning" [innerHtml]="'num of files n/a in index!'"></small>
             </div>
             <div *ngIf="authenticated" class="d-flex flex-sm-row">
                 <small class="me-2 text-secondary" [innerHtml]="dataset.id"></small>

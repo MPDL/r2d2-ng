@@ -4,13 +4,13 @@
             <input class="form-control form-control-sm" type="text" placeholder="first" formControlName="givenName"
                 id="author-first" />
             <r2d2-validation-errors [control]="authorsForm.controls.givenName"
-                [messages]="{reqired:'first is required', mustOrNot:'Wilhelm is disallowed'}"></r2d2-validation-errors>
+                [messages]="{required:'first is required', mustOrNot:'Wilhelm is disallowed'}"></r2d2-validation-errors>
         </div>
         <div class="col-4">
             <input class="form-control form-control-sm" type="text" placeholder="last" formControlName="familyName"
                 id="author-last" />
             <r2d2-validation-errors [control]="authorsForm.controls.familyName"
-                [messages]="{reqired:'last is required', mustOrNot:'Frank is disallowed', minlength:'gimme at least 2!'}">
+                [messages]="{required:'last is required', mustOrNot:'Frank is disallowed', minlength:'gimme at least 2!'}">
             </r2d2-validation-errors>
         </div>
         <div class="col-3">
@@ -21,8 +21,8 @@
             </r2d2-validation-errors>
         </div>
         <div class="col-1 btn-group btn-group-sm d-flex">
-            <input type="button" class="btn btn-sm" name="remove" value="--" (click)="removeAuthor()" />
-            <input type="button" class="btn btn-sm ms-1" name="add" value="+" (click)="addAuthor()" />
+            <button mat-icon-button name="remove" value="--" (click)="removeAuthor()"><mat-icon>remove</mat-icon></button>
+            <button mat-icon-button name="add" value="+" (click)="addAuthor()"><mat-icon>add</mat-icon></button>
         </div>
     </div>
     <!--<div class="form-group form-row mb-1 w-100">-->

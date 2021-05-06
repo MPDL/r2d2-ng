@@ -16,6 +16,10 @@ export class DatasetListComponent implements OnInit {
   users: Observable<any>;
   no_name = 'n/a';
   search_term: string;
+  state_obs: string[] =["Public", "Private", "Withdraw"];
+  publisher_obs: string[];
+  genres_obs: string[];
+  created_obs: string[];
 
   constructor(
     private service: R2d2Service,
@@ -28,6 +32,7 @@ export class DatasetListComponent implements OnInit {
       // map(result => result.total > 0 ? result.hits.map(ito => ito.source) : [])
       map(result => result.hits?.map(ito => ito.source))
     );
+
   }
 
   filter(): void {
@@ -44,4 +49,9 @@ export class DatasetListComponent implements OnInit {
   addNewDataset(): void {
     this.router.navigate(['/rest/set-editor', 'new']);
   }
+
+  facetNotice(notice: string): string {
+    return notice;
+  }
+
 }

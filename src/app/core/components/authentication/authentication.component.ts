@@ -58,7 +58,7 @@ export class AuthenticationComponent implements OnInit {
     this.auth.logout();
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = 'reload';
-    this.router.navigate(['/rest/sets']);
+    this.router.navigate(['/rest']);
   }
 
   openRegistrationDialog(): void {

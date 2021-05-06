@@ -50,8 +50,13 @@ a {
   outline: none;
 }
 
+form {
+  background-color: $gray-1;  
+}
+
 .container {
-  margin: 1rem;
+  margin-left: 10%;
+  background-color: transparent;
 }
 
 .spacer {
@@ -62,12 +67,15 @@ a {
   background-color: $gray-1;
 }
 
-.card-body {
-  background-color: orange; 
+.card {
+  background-color: transparent;  
 }
 
 .card-header {
-  background-color: transparent;
+  background-color: $mpdl-yellow;
 }
 
+.card-body {
+  background-color: $mpdl-yellow; 
+}
 
