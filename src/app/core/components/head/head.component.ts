@@ -17,12 +17,4 @@ export class HeadComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  goHome(): void {
-    this.router.navigate(['/rest']);
-  }
-
-  goMyDatasets(): void {
-    this.router.navigate(['/rest/sets']);
-  }
-
 }

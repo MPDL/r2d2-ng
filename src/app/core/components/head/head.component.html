@@ -5,11 +5,12 @@
         <img src="assets/images/edmond/logo_for_bright.png" />
       </a>
     </div>
-    <a *ngIf="auth.isLoggedIn" (click)="goHome()" class="nav-item nav-link text-primary">Home</a>
+
     <div class="d-flex flex-row justify-content-between">
       <div class="navbar-nav">
         <div class="d-flex ms-auto align-self-center">
-          <a *ngIf="auth.isLoggedIn" (click)="goMyDatasets()" class="nav-item nav-link text-primary">My Datasets</a>
+          <a *ngIf="auth.isLoggedIn" [routerLink]="['/rest']" routerLinkActive="active" class="nav-item nav-link text-primary">Home</a>
+          <a *ngIf="auth.isLoggedIn" [routerLink]="['/rest/sets']" routerLinkActive="active" class="nav-item nav-link text-primary">My Datasets</a>
           <span *ngIf="auth.isLoggedIn" class="nav-item nav-link text-success">
             <mat-icon>perm_identity</mat-icon>{{
             auth.user.person.familyName
@@ -20,5 +21,6 @@
         <r2d2-authentication></r2d2-authentication>
       </div>
     </div>
+
   </div>
 </nav>

@@ -1,23 +1,5 @@
 <div class="container-fluid">
-    <div *ngIf="dataset$ | async as dataset" class="mt-0 row">
-      <div *ngIf="auth.isLoggedIn; else no_staging" class="card col-4">
-        <div class="card-header">
-          <h5>Your floating files ...</h5>
-        </div>
-        <div class="card-body">
-          
-        </div>
-      </div>
-  
-      <ng-template #no_staging>
-        <div class="card col-4">
-          <div class="card-header">
-            <h4>placeholder ...</h4>
-          </div>
-          <div class="card-body"></div>
-        </div>
-      </ng-template>
-  
+  <div *ngIf="dataset$ | async as dataset" class="mt-0 row">
       <div class="card col-8">
         <div class="card-header">
           <!-- h4>
@@ -212,5 +194,23 @@
           <!-- Dataset View ends here -->
         </div>
       </div>
+
+      <div *ngIf="auth.isLoggedIn; else no_staging" class="card col-4">
+        <div class="card-header">
+          <h5>Your floating files ...</h5>
+        </div>
+        <div class="card-body">
+          
+        </div>
+      </div>
     </div>
+  
+      <ng-template #no_staging>
+        <div class="card col-4">
+          <div class="card-header">
+            <h4>placeholder ...</h4>
+          </div>
+          <div class="card-body"></div>
+        </div>
+      </ng-template>
   </div>
