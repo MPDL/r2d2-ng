@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { R2d2Service } from '../../services/r2d2.service';
 import { Observable } from 'rxjs';
 import { Router, NavigationEnd } from '@angular/router';
@@ -13,7 +13,7 @@ import { map } from 'rxjs/operators';
   selector: 'r2d2-dataset-list',
   templateUrl: './dataset-list.component.html',
 })
-export class DatasetListComponent implements OnDestroy {
+export class DatasetListComponent implements OnInit {
   datasets: Observable<DatasetVersion[]>;
   users: Observable<any>;
   no_name = 'n/a';
@@ -28,22 +28,9 @@ export class DatasetListComponent implements OnDestroy {
     private service: R2d2Service,
     private router: Router,
     public auth: AuthenticationService
-  ) {
-    this.navigationSubscription = this.router.events.subscribe((event: any) => {
-      if (event instanceof NavigationEnd) {
-        this.init();
-      }
-    });
-  }
+  ) { }
 
-  ngOnDestroy(): void {
-    if (this.navigationSubscription) {
-      this.navigationSubscription.unsubscribe();
-    }
-  }
-
-  // Implemented to fetch data 
-  init(): void {
+  ngOnInit(): void {
     this.datasets = this.service.list().pipe(
       // map(result => result.total > 0 ? result.hits.map(ito => ito.source) : [])
       map((result) => result.hits?.map((ito) => ito.source))
