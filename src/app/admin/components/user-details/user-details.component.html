@@ -1,11 +1,11 @@
-<div class="container-fluid">
+<div class="container">
     <div class="mt-0 row">
-        <div class="card col-3">
+        <div class="card col-2">
             <div class="card-body">
                 <p>placeholder 4 anything</p>
             </div>
         </div>
-        <div class="card col-9" *ngIf="user | async; let u">
+        <div class="card col-10" *ngIf="user | async; let u">
             <div class="row">
                 <button class="btn col-1" style="font-size: 2rem;" (click)="back2list()">
                     <i class="bi-list-ol"></i>

@@ -1,16 +1,6 @@
-<div class="container-fluid">
+<div class="container">
     <div class="mt-0 row">
-        <div class="card col-2 offset-1 me-3">
-            <div class="card-body">
-                <p>placeholder 4 facets</p>
-                <!--            <r2d2-facet [list]=true [chunk_size]=10 [title]="'state'" [item_array]="state_obs" (notice)="facetNotice($event)"></r2d2-facet>
-                <r2d2-facet [list]=true [chunk_size]=10 [title]="'publisher'" [item_array]="publisher_obs" (notice)="facetNotice($event)"></r2d2-facet>
-                <r2d2-facet [list]=false [chunk_size]=10 [title]="'genre'" [item_array]="genres_obs" (notice)="facetNotice($event)"></r2d2-facet>
-                <r2d2-facet [list]=true [chunk_size]=5 [title]="'created'" [item_array]="created_obs" (notice)="facetNotice($event)"></r2d2-facet>
-            -->
-            </div>
-        </div>
-        <div class="card col-8">
+        <div class="card col-9">
             <div class="card-header d-flex flex-sm-row px-0 align-items-center">
                 <div class="col-6 offset-1">
                     <div class="input-group">
@@ -29,6 +19,16 @@
                     *ngFor="let dataset of datasets | async" (click)="goTo(dataset.id)">
                     <r2d2-list-view [dataset]="dataset" [authenticated]="auth.isLoggedIn"></r2d2-list-view>
                 </div>
+            </div>
+        </div>
+        <div class="card col-2 ms-auto">
+            <div class="card-body">
+                <p>placeholder 4 facets</p>
+                <!--            <r2d2-facet [list]=true [chunk_size]=10 [title]="'state'" [item_array]="state_obs" (notice)="facetNotice($event)"></r2d2-facet>
+                <r2d2-facet [list]=true [chunk_size]=10 [title]="'publisher'" [item_array]="publisher_obs" (notice)="facetNotice($event)"></r2d2-facet>
+                <r2d2-facet [list]=false [chunk_size]=10 [title]="'genre'" [item_array]="genres_obs" (notice)="facetNotice($event)"></r2d2-facet>
+                <r2d2-facet [list]=true [chunk_size]=5 [title]="'created'" [item_array]="created_obs" (notice)="facetNotice($event)"></r2d2-facet>
+            -->
             </div>
         </div>
     </div>
