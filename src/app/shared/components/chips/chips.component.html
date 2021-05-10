@@ -1,6 +1,6 @@
 <div [formGroup]=parent_form>
     <mat-chip-list #chipList aria-label="Fruit selection" [formControlName]="control_name">
-        <mat-chip class="bg-secondary text-light" *ngFor="let chip of chips.value" [selectable]="selectable" [removable]="removable" (removed)="remove(chip)">
+        <mat-chip class="bg-light text-primary" *ngFor="let chip of chips.value" [selectable]="selectable" [removable]="removable" (removed)="remove(chip)">
             {{chip}}
             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
         </mat-chip>

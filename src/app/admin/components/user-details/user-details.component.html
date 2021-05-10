@@ -25,7 +25,7 @@
                 <div *ngIf="editing" class="card-body">
                     <form [formGroup]="user_form" (ngSubmit)="onFormSubmit(u.id, u.modificationDate)">
                         <div class="row w-100 mb-1">
-                            <label for="email" class="col-sm-1 text-end col-form-label col-form-label-sm">email</label>
+                            <label for="email" class="col-sm-1 text-end col-form-label-sm">email</label>
                             <div class="col-sm-8">
                                 <input class="form-control form-control-sm" type="text" formControlName="email"
                                     id="email" required />
@@ -36,14 +36,14 @@
                         </div>
                         <div class="row w-100 mb-1">
                             <label for="active"
-                                class="col-sm-1 text-end col-form-label col-form-label-sm">active</label>
+                                class="col-sm-1 text-end col-form-label-sm">active</label>
                             <div class="col-sm-1">
                                 <input class="form-check-input" type="checkbox" formControlName="active" id="active" />
                             </div>
                         </div>
                         <div class="row w-100 mb-1">
                             <label for="person"
-                                class="col-sm-1 text-end col-form-label col-form-label-sm">person</label>
+                                class="col-sm-1 text-end col-form-label-sm">person</label>
                             <div class="col-sm-8">
                                 <!-- this is working 
                                 <div formArrayName="person" id="person">
@@ -63,7 +63,7 @@
                             </div>
                         </div>
                         <div class="row w-100 mb-1">
-                            <label for="grants" class="col-sm-1 text-end col-form-label col-form-label-sm">grants</label>
+                            <label for="grants" class="col-sm-1 text-end col-form-label-sm">grants</label>
                             <div class="col-sm-8">
                                 <!--<r2d2-chips [parent_form]="user_form" control_name="roles"></r2d2-chips>-->
                                 <div formArrayName="grants" id="grants">
