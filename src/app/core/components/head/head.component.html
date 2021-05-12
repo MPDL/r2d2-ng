@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand">
+<nav class="navbar navbar-expand bg-r2d2-green">
   <div class="container-fluid">
     <div class="navbar-brand">
       <a [routerLink]="['/rest']">
@@ -7,16 +7,14 @@
     </div>
 
     <div class="d-flex flex-row justify-content-between">
-      <div class="navbar-nav" head-bg>
+      <div class="navbar-nav">
         <div class="d-flex ms-auto align-self-center">
           <a *ngIf="auth.isLoggedIn" [routerLink]="['/rest']" routerLinkActive="active" class="nav-item nav-link text-primary">Home</a>
           <a *ngIf="auth.isLoggedIn" [routerLink]="['/rest/sets']" routerLinkActive="active" class="nav-item nav-link text-primary">My Datasets</a>
-          <span *ngIf="auth.isLoggedIn" class="nav-item nav-link text-success">
-            <mat-icon>perm_identity</mat-icon>{{
-            auth.user.person.familyName
-          }}
-          </span>
-          <a *ngIf="auth.isAdmin" [routerLink]="['/admin']" class="nav-item nav-link text-warning">Admin</a>
+          <a *ngIf="auth.isAdmin" [routerLink]="['/admin']" class="nav-item nav-link text-info">Admin</a>
+          <div *ngIf="auth.isLoggedIn" class="nav-item nav-link text-success">
+            <span class="bi bi-person">{{auth.user.person.familyName}}</span>
+          </div>
         </div>
         <r2d2-authentication></r2d2-authentication>
       </div>

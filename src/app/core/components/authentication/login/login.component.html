@@ -2,9 +2,7 @@
   <div class="modal-content">
     <div class="modal-header">
       <h3 class="modal-title mpdl-blue">Login</h3>
-      <button mat-icon-button (click)="close()">
-        <mat-icon>close</mat-icon>
-      </button>
+      <button class="btn bi bi-x-circle" (click)="close()"></button>
     </div>
     <form [formGroup]="loginForm" novalidate (ngSubmit)="login()">
       <div class="modal-body">

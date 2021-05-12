@@ -6,16 +6,14 @@
                     <div class="input-group">
                         <input type="text" class="form-control form-control-sm" placeholder="search ..."
                             [(ngModel)]="search_term" (keyup.enter)="filter()" />
-                        <button mat-icon-button
+                        <button class="btn bi bi-search"
                             (click)="filter()">
-                            <mat-icon>search</mat-icon>
                         </button>
                     </div>
                 </div>
-                <button mat-icon-button *ngIf="auth.isLoggedIn" type="submit"
-                    class="col-1 ms-auto btn btn-outline-primary btn-sm text-truncate" name="add"
+                <button *ngIf="auth.isLoggedIn" type="submit"
+                    class="col-1 ms-auto btn bi bi-plus-circle" name="add" 
                     value="add new dataset" (click)="addNewDataset()">
-                    <mat-icon>add</mat-icon>
                 </button>
             </div>
             <div class="list-group-flush">

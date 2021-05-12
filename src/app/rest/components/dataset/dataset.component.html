@@ -90,19 +90,14 @@
                         value="x"
                       />
                     </div-->
-                    <button mat-icon-button
-                      class="col-1 ms-auto btn btn-outline-secondary btn-sm text-truncate" name="download"
+                    <button
+                      class="col-1 ms-auto btn bi bi-box-arrow-down" name="download"
                       value="add new dataset" (click)="download(file)">
-                      <mat-icon>download</mat-icon>
                     </button>
                   </div>
                 <div *ngIf="dataset?.files">
-                  <span>Download all</span>
-                  <button mat-icon-button
-                  class="col-1 ms-auto btn btn-outline-primary btn-sm text-truncate" name="downloadAll"
-                  value="add new dataset" (click)="downloadAll()">
-                  <mat-icon>download_for_offline</mat-icon>
-                </button>
+                  <button class="col-2 ms-auto btn btn-outline-primary btn-sm" name="downloadAll"
+                          value="add new dataset" (click)="downloadAll()">Download all</button>             
                 </div>
 
               </div>

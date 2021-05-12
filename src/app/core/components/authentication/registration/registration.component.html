@@ -1,9 +1,7 @@
 <div class="modal-content">
   <div class="modal-header">
     <h3 class="modal-title" id="exampleModalLabel">Register</h3>
-    <button mat-icon-button (click)="close()">
-      <mat-icon>close</mat-icon>
-    </button>
+    <button class="btn bi bi-x-circle" (click)="close()"></button>
   </div>
   <form [formGroup]="registrationForm" (ngSubmit)="register()">
     <div class="modal-body">
