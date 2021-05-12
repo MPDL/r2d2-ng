@@ -17,4 +17,8 @@ export class ListViewComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  numOfFiles(): number {
+    return 0;
+  }
+
 }

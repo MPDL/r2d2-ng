@@ -29,7 +29,9 @@
                 </div>
             </div>
             <div class="d-flex flex-sm-row">
-                <small class="col-10 text-warning" [innerHtml]="'num of files n/a in index!'"></small>
+                <div *ngIf="numOfFiles() == 0">
+                    <small class="col-10 text-warning" [innerHtml]="'num of files n/a in index!'"></small>
+                </div>
             </div>
             <div *ngIf="authenticated" class="d-flex flex-sm-row">
                 <small class="me-2 text-secondary" [innerHtml]="dataset.id"></small>

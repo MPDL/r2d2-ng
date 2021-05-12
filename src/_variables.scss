@@ -57,7 +57,7 @@ $theme-colors: (
   dark: $dark,
   // add any additional color below
   mpdl-blue: $mpdl-blue-2,
-  mpdl-purple: $mpdl-purple,
+  mpdl-purple: $mpdl-purple
 );
 
 $card-bg:transparent;
@@ -87,4 +87,5 @@ $custom-control-label-color:$primary;
 //$form-select-bg: $gray-700;
 //$form-select-color: $gray-200;
 
-
+$head-bg: #8fbec4;
+$foot-bg: #f5f7f9;

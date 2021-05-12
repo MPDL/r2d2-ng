@@ -73,14 +73,14 @@
               <div class="col-sm-12 col-md-2">
                 <strong>Files</strong>
               </div>
-              <div class="col-sm-12 col-md-10">
-                <div class="list-group-item list-group-item-action py-0 d-flex flex-sm-row align-items-center"
+              <div class="col-12 col-sm-12 col-md-10">
+                <div class="list-group-item py-0 d-flex flex-sm-row justify-content-between text-muted"
                   *ngFor="let file of dataset?.files" (click)="download(file)">
-                  <span class="col-sm-4 text-start me-2" [innerHtml]="file.filename"></span>
+                  <span class="col-10 col-sm-4 me-2 text-primary" [innerHtml]="file.filename"></span>
                   <!--span class="col-sm-4 text-end me-2" [innerHtml]="file.id"></span-->
-                  <span class="col-sm-2 text-start text-truncate" [innerHtml]="file.size"></span>
-                  <span class="col-sm-2 text-start text-truncate" [innerHtml]="file.format"></span>
-                  <span class="col-sm-3 text-start text-truncate" [innerHtml]="file.checksum"></span>
+                  <span class="col-2 col-sm-2 text-primary" [innerHtml]="file.size"></span>
+                  <!--span class="col-sm-3 text-start text-truncate" [innerHtml]="file.format"></span-->
+                  <!--span class="col-sm-3 text-start text-truncate" [innerHtml]="file.checksum"></span-->
                   <!--div class="col-sm-1 text-end">
                       <input
                         type="submit"
@@ -90,9 +90,19 @@
                         value="x"
                       />
                     </div-->
-                </div>
+                    <button mat-icon-button
+                      class="col-1 ms-auto btn btn-outline-secondary btn-sm text-truncate" name="download"
+                      value="add new dataset" (click)="download(file)">
+                      <mat-icon>download</mat-icon>
+                    </button>
+                  </div>
                 <div *ngIf="dataset?.files">
-                  <p>[Button_Download_all]</p>
+                  <span>Download all</span>
+                  <button mat-icon-button
+                  class="col-1 ms-auto btn btn-outline-primary btn-sm text-truncate" name="downloadAll"
+                  value="add new dataset" (click)="downloadAll()">
+                  <mat-icon>download_for_offline</mat-icon>
+                </button>
                 </div>
 
               </div>

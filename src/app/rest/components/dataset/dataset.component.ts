@@ -187,6 +187,12 @@ export class DatasetComponent implements OnInit {
       });
   }
 
+  downloadAll(): void {
+     this.files$.forEach(file => {
+      this.download(file);
+    })
+  }
+
   finishMPU(id, file): void {
     const parts = prompt('number of parts:');
     if (parts) {

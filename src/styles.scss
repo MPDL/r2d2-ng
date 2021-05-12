@@ -1,7 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "variables";
 @import "~bootstrap/scss/bootstrap";
-@import "./assets/r2d2-material.css";
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 
 .r2d2-mat-dialog .mat-dialog-container {
@@ -32,18 +31,6 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color: #ffffff;
-}
-
-header {
-  background-color: #8fbec4;
-}
-
-footer {
-  background-color: #f5f7f9;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 4rem;
 }
 
 a {
