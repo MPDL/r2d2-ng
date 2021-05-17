@@ -1,14 +1,14 @@
 <div class="container">
     <div class="mt-0 row">
-        <div class="card col-9 ms-auto">
+        <div class="card col-12 ms-auto">
             <div class="button row mb-3">
-                <a class="nav-link col-10 offset-2" (click)="datasetDetails()"><span class="text-primary"><i
+                <a class="nav-link col-10 offset-2" (click)="datasetDetails()"><i
                             class="bi-info-circle me-2 text-secondary"
-                            style="font-size: 2rem;"></i>{{datasetId}}</span></a>
+                            style="font-size: 2rem;"></i><span class="text-primary">{{datasetId}}</span></a>
             </div>
             <form *ngIf="datasetForm" [formGroup]="datasetForm" (ngSubmit)="onFormSubmit()">
                 <div class="row w-100 mb-1">
-                    <label for="ds-title" class="col-2 text-end col-form-label-sm">title</label>
+                    <label for="ds-title" class="col-2 text-end col-form-label-sm">Title</label>
                     <div class="col-10">
                         <input class="form-control form-control-sm" type="text" formControlName="title" id="ds-title"
                             required />
@@ -19,7 +19,7 @@
                 </div>
                 <div class="row w-100">
                     <!-- cause ou has also mb-1, no need here ...-->
-                    <label for="authors" class="col-2 text-end col-form-label-sm">authors</label>
+                    <label for="authors" class="col-2 text-end col-form-label-sm">Author/s</label>
                     <div class="col-10">
                         <div formArrayName="authors" id="authors">
                             <div *ngFor="let author of datasetForm.controls['authors']['controls']; let i=index">
@@ -33,32 +33,32 @@
                     </div>
                 </div>
                 <div class="row w-100 mb-1">
-                    <label for="ds-description" class="col-2 text-end col-form-label-sm">description</label>
+                    <label for="ds-description" class="col-2 text-end col-form-label-sm">Description</label>
                     <div class="col-10">
                         <textarea class="form-control form-control-sm" rows="1" formControlName="description"
                             id="ds-description"></textarea>
                     </div>
                 </div>
                 <div class="row w-100 mb-1">
-                    <label for="ds-content" class="col-2 text-end col-form-label-sm">doi</label>
+                    <label for="ds-content" class="col-2 text-end col-form-label-sm">DOI</label>
                     <div class="col-10">
                         <input class="form-control form-control-sm" type="text" formControlName="doi" id="ds-doi" />
                     </div>
                 </div>
                 <div class="row w-100 mb-1">
-                    <label for="ds-genres" class="col-2 text-end col-form-label-sm">genres</label>
+                    <label for="ds-genres" class="col-2 text-end col-form-label-sm">Genres</label>
                     <div class="col-10">
                         <r2d2-chips [parent_form]="datasetForm" control_name="genres"></r2d2-chips>
                     </div>
                 </div>
                 <div class="row w-100 mb-1">
-                    <label for="ds-keywords" class="col-2 text-end col-form-label-sm">keywords</label>
+                    <label for="ds-keywords" class="col-2 text-end col-form-label-sm">Keywords</label>
                     <div class="col-10">
                         <r2d2-chips [parent_form]="datasetForm" control_name="keywords"></r2d2-chips>
                     </div>
                 </div>
                 <div class="row w-100 mb-0">
-                    <label for="ds-license" class="col-2 text-end col-form-label-sm">license</label>
+                    <label for="ds-license" class="col-2 text-end col-form-label-sm">License</label>
                     <div class="col-10">
                         <div formGroupName="license" id="ds-license">
                             <r2d2-license [licenseForm]="$any(datasetForm.controls['license'])">
@@ -67,7 +67,7 @@
                     </div>
                 </div>
                 <div class="row w-100 mb-1">
-                    <label for="publications" class="col-2 text-end col-form-label-sm">publications</label>
+                    <label for="publications" class="col-2 text-end col-form-label-sm">Publications</label>
                     <div class="col-10">
                         <div formArrayName="correspondingPapers" id="correspondingPapers">
                             <div
@@ -82,7 +82,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row w-100">
+                <div class="row w-100 p-4">
                     <div class="col-3 offset-2">
                         <input type="button" class="btn btn-outline-secondary btn-sm me-2" name="cancel" value="cancel"
                             (click)="gotoList()" />

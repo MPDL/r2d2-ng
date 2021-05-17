@@ -1,7 +1,7 @@
 <div class="container">
   <div *ngIf="dataset$ | async as dataset" class="mt-0 row">
-    <div class="card col-8 ms-auto">
-      <div class="button row" style="font-size: 2rem">
+    <div class="card col-12 ms-auto">
+      <div class="button row col-10 offset-2" style="font-size: 2rem">
         <a class="text-secondary col-1" [routerLink]="['/rest/sets']"><i class="bi-list-ol"></i></a>
         <a *ngIf="auth.isLoggedIn && dataset.dataset.state != 'WITHDRAWN'" class="text-primary col-1"
           [routerLink]="['/rest/set-editor', dataset.id]" [queryParams]="{lmd:dataset.modificationDate}"><i
@@ -29,7 +29,9 @@
           <b class="text-primary">{{ dataset.versionNumber }} </b>
           <small class="text-info">{{ dataset?.state }} </small><small>{{ dataset.modificationDate }}</small>
         </h4 -->
-        <h4>{{ dataset.metadata.title }}</h4>
+        <div class="offset-2">
+          <h4 >{{ dataset.metadata.title }}</h4>
+        </div>
       </div>
       <div class="card-body">
         <!-- <pre>{{ dataset?.metadata | json }}</pre> -->
@@ -38,12 +40,12 @@
         <div class="row">
           <div class="col-12">
             <div class="row py-1">
-              <div class="col-sm-12 col-md-2">
-                <strong>Author/s</strong>
+              <div class="col-2 text-end">
+                Author/s
               </div>
               <div class="col-sm-12 col-md-10">
                 <div *ngFor="let person of dataset.metadata?.authors">
-                  <div class="py-1">
+                  <div>
                     <span class="col-sm-2 text-start text-truncate" [innerHtml]="person.familyName"></span>,
                     <span class="col-sm-2 text-start text-truncate" [innerHtml]="person.givenName"></span>
                     <div *ngFor="let affiliation of person.affiliations">
@@ -60,8 +62,8 @@
             </div>
 
             <div class="row py-1">
-              <div class="col-sm-12 col-md-2">
-                <strong>Description</strong>
+              <div class="col-2 text-end">
+                Description
               </div>
               <div class="col-sm-12 col-md-10">
                 <span>{{ dataset.metadata.description }}</span>
@@ -70,8 +72,8 @@
 
             <div *ngIf="dataset?.files" class="list-group-flush">
               <div class="row py-1">
-                <div class="col-sm-12 col-md-2">
-                  <strong>Files</strong>
+                <div class="col-2 text-end">
+                  Files
                 </div>
                 <div class="col-sm-12 col-md-10">
                   <div class="list-group-item list-group-item-action py-0 d-flex flex-sm-row align-items-center"
@@ -100,8 +102,8 @@
             </div>
 
             <div class="row py-1">
-              <div class="col-sm-12 col-md-2">
-                <strong>DOI</strong>
+              <div class="col-2 text-end">
+                DOI
               </div>
               <div class="col-sm-12 col-md-10">
                 <span>{{ dataset.metadata.doi }}</span>
@@ -109,8 +111,8 @@
             </div>
 
             <div class="row py-1">
-              <div class="col-sm-12 col-md-2">
-                <strong>Citation</strong>
+              <div class="col-2 text-end">
+                Citation
               </div>
               <div class="col-sm-12 col-md-10">
                 <div *ngFor="let person of dataset.metadata.authors">
@@ -128,8 +130,8 @@
             </div>
 
             <div class="row py-1">
-              <div class="col-sm-12 col-md-2">
-                <strong>Genres</strong>
+              <div class="col-2 text-end">
+                Genres
               </div>
               <div class="col-sm-12 col-md-10">
                 <span>{{ dataset.metadata.genres }}</span>
@@ -137,8 +139,8 @@
             </div>
 
             <div class="row py-1">
-              <div class="col-sm-12 col-md-2">
-                <strong>Keywords</strong>
+              <div class="col-2 text-end">
+                Keywords
               </div>
               <div class="col-sm-12 col-md-10">
                 <span>{{ dataset.metadata.keywords }}</span>
@@ -146,8 +148,8 @@
             </div>
 
             <div class="row py-1">
-              <div class="col-sm-12 col-md-2">
-                <strong>Licence</strong>
+              <div class="col-2 text-end">
+                Licence
               </div>
               <div *ngIf="dataset?.metadata.license" class="col-sm-12 col-md-10">
                 <span>{{ dataset.metadata.license.name }} </span>
@@ -156,8 +158,8 @@
 
             <div *ngIf="dataset?.state === 'PUBLIC'">
               <div class="row py-1">
-                <div class="col-sm-12 col-md-2">
-                  <strong>Dates</strong>
+                <div class="col-2 text-end">
+                  Dates
                 </div>
                 <div class="col-sm-12 col-md-10">
                   <span>{{ dataset.modificationDate }}</span>
@@ -166,8 +168,8 @@
             </div>
 
             <div class="row py-1">
-              <div class="col-sm-12 col-md-2">
-                <strong>Corresponding Papers</strong>
+              <div class="col-2 text-end">
+                Corresponding Papers
               </div>
               <div class="col-sm-12 col-md-10">
                 <div *ngFor="let publication of dataset.metadata.correspondingPapers">
@@ -180,8 +182,8 @@
             </div>
 
             <div class="row py-1">
-              <div class="col-sm-12 col-md-2">
-                <strong>Language</strong>
+              <div class="col-2 text-end">
+                Language
               </div>
               <div class="col-sm-12 col-md-10">
                 <span>{{ dataset.metadata.language }}</span>
