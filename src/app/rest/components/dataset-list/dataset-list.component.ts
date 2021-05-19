@@ -46,6 +46,7 @@ export class DatasetListComponent implements OnInit {
       aggregations: { affiliations }
     };
     // nested returns accumulated number of all affiliations ...
+    // since nested authors are stored in seperate documents!
     this.affiliations_obs = this.aggs.getBuckets('', { affiliations });
 
   }
@@ -86,8 +87,8 @@ export class DatasetListComponent implements OnInit {
         value = event.field;
         break;
       case 'reset':
-        field = 'publicState';
-        value = 'RELEASED';
+        field = 'state';
+        value = 'PUBLIC';
         break;
       default:
         break;

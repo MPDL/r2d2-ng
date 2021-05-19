@@ -31,13 +31,17 @@ export class AggregationService {
         map(response => {
           // Elasticsearch: The high-level REST client sets the typed_keys parameter internally
           // TODO: find all typed_keys and implement generic solution ...
-          return response[`aggregations`]['nested#' + name]['sterms#' + nested_name].buckets;
+          // return response[`aggregations`]['nested#' + name]['sterms#' + nested_name].buckets;
+          // in case of nested the aggrgation name will be the second key ...
+          return (Object.values(response[`aggregations`]['nested#' + name])[1] as any).buckets;
+
         })
       );
     } else {
       return this.http.post(this.searchUrl, params, this.httpOptions).pipe(
         map(response => {
-          return response[`aggregations`]['sterms#' + name].buckets;
+          // the aggregation name will be the first key ...
+          return (Object.values(response[`aggregations`])[0] as any).buckets;
         })
       );
     }
