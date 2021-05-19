@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ESTO, DatasetVersion } from '../../../shared/components/model/entities';
 import { AuthenticationService } from '../../../core/services/authentication.service';
 import { map } from 'rxjs/operators';
+import { AggregationService } from '../../services/aggregation.service';
 
 @Component({
   selector: 'r2d2-dataset-list',
@@ -16,11 +17,14 @@ export class DatasetListComponent implements OnInit {
   users: Observable<any>;
   no_name = 'n/a';
   search_term: string;
+  affiliations_obs: Observable<{}[]>;
 
   constructor(
     private service: R2d2Service,
     private router: Router,
-    public auth: AuthenticationService
+    public auth: AuthenticationService,
+    private aggs: AggregationService,
+
   ) { }
 
   ngOnInit(): void {
@@ -28,6 +32,22 @@ export class DatasetListComponent implements OnInit {
       // map(result => result.total > 0 ? result.hits.map(ito => ito.source) : [])
       map(result => result.hits?.map(ito => ito.source))
     );
+    const affiliations = {
+      terms: {
+        field: 'metadata.authors.affiliations.organization.keyword',
+        order: { _count: 'desc' },
+        size: 25
+      }
+    };
+    const nested = {
+      nested: {
+        path: 'metadata.authors'
+      },
+      aggregations: { affiliations }
+    };
+    // nested returns accumulated number of all affiliations ...
+    this.affiliations_obs = this.aggs.getBuckets('', { affiliations });
+
   }
 
   filter(): void {
@@ -43,5 +63,40 @@ export class DatasetListComponent implements OnInit {
 
   addNewDataset(): void {
     this.router.navigate(['/rest/set-editor', 'new']);
+  }
+
+  facetNotice(event) {
+    let field;
+    let value;
+    switch (event.search) {
+      case 'genre':
+        field = 'metadata.genre';
+        value = event.field;
+        break;
+      case 'created':
+        field = 'creationDate';
+        value = event.field + '-01-01||/y';
+        break;
+      case 'ous':
+        field = 'metadata.authors.affiliations.organization.keyword';
+        value = event.field;
+        break;
+      case 'state':
+        field = 'state';
+        value = event.field;
+        break;
+      case 'reset':
+        field = 'publicState';
+        value = 'RELEASED';
+        break;
+      default:
+        break;
+    }
+
+    this.datasets = this.aggs.termfilter(field, value).pipe(
+      map(response => {
+        return (response as any).hits.hits.map(hit => hit._source);
+      })
+    );
   }
 }
