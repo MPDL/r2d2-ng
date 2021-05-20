@@ -18,6 +18,7 @@ export class DatasetListComponent implements OnInit {
   no_name = 'n/a';
   search_term: string;
   affiliations_obs: Observable<{}[]>;
+  genres_obs: Observable<{}[]>;
 
   constructor(
     private service: R2d2Service,
@@ -39,6 +40,13 @@ export class DatasetListComponent implements OnInit {
         size: 25
       }
     };
+    const genres = {
+      terms: {
+        field: 'metadata.genres.keyword',
+        order: { _count: 'desc' },
+        size: 25
+      }
+    };
     const nested = {
       nested: {
         path: 'metadata.authors'
@@ -48,6 +56,7 @@ export class DatasetListComponent implements OnInit {
     // nested returns accumulated number of all affiliations ...
     // since nested authors are stored in seperate documents!
     this.affiliations_obs = this.aggs.getBuckets('', { affiliations });
+    this.genres_obs = this.aggs.getBuckets('', { genres });
 
   }
 
@@ -71,7 +80,7 @@ export class DatasetListComponent implements OnInit {
     let value;
     switch (event.search) {
       case 'genre':
-        field = 'metadata.genre';
+        field = 'metadata.genres.keyword';
         value = event.field;
         break;
       case 'created':

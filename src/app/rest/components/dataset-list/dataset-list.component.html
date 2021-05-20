@@ -22,11 +22,11 @@
             </div>
         </div>
         <div class="card col-2 ms-auto">
-            <div class="card-body">
+            <div class="">
                 <!--<p>placeholder 4 facets</p>-->
                 <r2d2-facet [list]=true [chunk_size]=10 [title]="'ous'" [item_array]="affiliations_obs" (notice)="facetNotice($event)"></r2d2-facet>
-            <!--   <r2d2-facet [list]=true [chunk_size]=10 [title]="'publisher'" [item_array]="publisher_obs" (notice)="facetNotice($event)"></r2d2-facet>
-                <r2d2-facet [list]=false [chunk_size]=10 [title]="'genre'" [item_array]="genres_obs" (notice)="facetNotice($event)"></r2d2-facet>
+                <r2d2-facet [list]=true [chunk_size]=10 [title]="'genre'" [item_array]="genres_obs" (notice)="facetNotice($event)"></r2d2-facet>
+                <!--   <r2d2-facet [list]=true [chunk_size]=10 [title]="'publisher'" [item_array]="publisher_obs" (notice)="facetNotice($event)"></r2d2-facet>
                 <r2d2-facet [list]=true [chunk_size]=5 [title]="'created'" [item_array]="created_obs" (notice)="facetNotice($event)"></r2d2-facet>
             -->
             </div>

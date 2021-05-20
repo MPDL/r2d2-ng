@@ -1,27 +1,26 @@
-<div *ngIf="!list" class="container">
+<div *ngIf="!list" class="container-fluid px-0">
     <h5>{{title}}</h5>
-    <input type="submit" class="btn btn-outline-light btn-sm" name="less" value="less" (click)="prevSlice(item_list)" />
+    <a (click)="prevSlice(item_list)"><i class="material-icons">remove</i></a>
     <form *ngIf="facet_form" [formGroup]="facet_form" (ngSubmit)="submit()">
 
-        <div class="form-check" formArrayName="facets"
+        <div class="form-check py-0" formArrayName="facets"
             *ngFor="let item of item_list; let i = index">
             <input (change)="filter(item)" type="checkbox" class="form-check-input" value=""
                 [id]="item.key+i">
-            <label class="form-check-label" [for]="item.key+i"><span
-                    class="text-truncate">{{item.key_as_string || item.key}}</span>
-                ({{item.doc_count}})</label>
+            <label class="form-check-label text-truncate" [for]="item.key+i"><span><small>{{item.key_as_string || item.key}}</small></span>
+                <small>({{item.doc_count}})</small></label>
         </div>
     </form>
-    <input type="submit" class="btn btn-outline-light btn-sm" name="more" value="more" (click)="nextSlice(item_list)" />
+    <a (click)="nextSlice(item_list)"><i class="material-icons">add</i></a>
 </div>
-<div *ngIf="list" class="container">
+<div *ngIf="list" class="container-fluid px-0">
     <h5>{{title}}</h5>
     <a (click)="prevSlice(item_list)"><i class="material-icons">remove</i></a>
     <div class="list-group-flush">
         <div class="list-group-item list-group-item-action py-0 d-flex flex-sm-row g-0 align-items-center"
             *ngFor="let item of item_list" (click)="filter(item)">
             <span class="text-start col-2" [innerHtml]="item.doc_count"></span>
-            <span *ngIf="item.doc_count !== 'more'" class="text-end text-truncate col-10"
+            <span *ngIf="item.doc_count !== 'more'" class="text-start text-truncate col-10"
                 [innerHtml]="item.key_as_string || item.key"></span>
         </div>
     </div>

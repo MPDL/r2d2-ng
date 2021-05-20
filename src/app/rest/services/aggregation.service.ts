@@ -24,27 +24,17 @@ export class AggregationService {
       size: 0,
       aggregations: aggregation
     };
-    const name = Object.entries(aggregation)[0][0];
-    if (name.includes('nested')) {
-      const nested_name = Object.entries(aggregation.nested.aggregations)[0][0];
-      return this.http.post(this.searchUrl, params, this.httpOptions).pipe(
-        map(response => {
-          // Elasticsearch: The high-level REST client sets the typed_keys parameter internally
-          // TODO: find all typed_keys and implement generic solution ...
-          // return response[`aggregations`]['nested#' + name]['sterms#' + nested_name].buckets;
-          // in case of nested the aggrgation name will be the second key ...
-          return (Object.values(response[`aggregations`]['nested#' + name])[1] as any).buckets;
-
-        })
-      );
-    } else {
-      return this.http.post(this.searchUrl, params, this.httpOptions).pipe(
-        map(response => {
-          // the aggregation name will be the first key ...
-          return (Object.values(response[`aggregations`])[0] as any).buckets;
-        })
-      );
-    }
+    return this.http.post(this.searchUrl, params, this.httpOptions).pipe(
+      map((response: any) => {
+        const key1 = Object.keys(response.aggregations)[0];
+        if (key1.includes('nested')) {
+          const key2 = Object.keys(response.aggregations[key1])[1];
+          return response.aggregations[key1][key2].buckets;
+        } else {
+          return response.aggregations[key1].buckets;
+        }
+      })
+    );
   }
 
   termfilter(f, v) {
@@ -55,6 +45,7 @@ export class AggregationService {
         term: { [f]: v }
       }
     }
+    console.log('search filter', term_filter)
     return this.http.post(this.searchUrl, term_filter, this.httpOptions).pipe(
       map(response => response)
     );
