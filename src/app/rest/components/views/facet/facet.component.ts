@@ -5,6 +5,7 @@ import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'r2d2-facet',
+  styleUrls: ['./facet.component.scss'],
   templateUrl: './facet.component.html'
 })
 export class FacetComponent implements OnInit {

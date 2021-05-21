@@ -45,7 +45,6 @@ export class AggregationService {
         term: { [f]: v }
       }
     }
-    console.log('search filter', term_filter)
     return this.http.post(this.searchUrl, term_filter, this.httpOptions).pipe(
       map(response => response)
     );

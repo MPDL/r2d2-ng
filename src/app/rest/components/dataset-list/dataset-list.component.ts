@@ -87,7 +87,7 @@ export class DatasetListComponent implements OnInit {
         field = 'creationDate';
         value = event.field + '-01-01||/y';
         break;
-      case 'ous':
+      case 'organization':
         field = 'metadata.authors.affiliations.organization.keyword';
         value = event.field;
         break;
@@ -97,7 +97,7 @@ export class DatasetListComponent implements OnInit {
         break;
       case 'reset':
         field = 'state';
-        value = 'PUBLIC';
+        value = '';
         break;
       default:
         break;
