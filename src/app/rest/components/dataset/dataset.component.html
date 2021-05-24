@@ -1,6 +1,6 @@
 <div class="container">
-  <div *ngIf="dataset$ | async as dataset" class="mt-0 row">
-    <div class="card col-12 ms-auto">
+  <div *ngIf="dataset$ | async as dataset" class="row">
+    <div class="card">
       <div class="button row col-10 offset-2" style="font-size: 2rem">
         <a class="text-secondary col-1" [routerLink]="['/rest/sets']"><i class="bi-list-ol"></i></a>
         <a *ngIf="auth.isLoggedIn && dataset.dataset.state != 'WITHDRAWN'" class="text-primary col-1"

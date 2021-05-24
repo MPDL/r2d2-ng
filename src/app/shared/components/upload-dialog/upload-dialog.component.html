@@ -1,14 +1,14 @@
 <input type="file" #file style="display: none" (change)="onFilesAdded()" multiple />
 <div class="modal-content">
-    <div class="modal-header bg-dark border-dark">
-        <h5 class="modal-title text-info" id="title">Upload Files</h5>
+    <div class="modal-header border-0">
+        <h5 class="modal-title" id="title">Upload Files</h5>
     </div>
-    <div class="modal-body bg-dark">
+    <div class="modal-body border-0">
         <div class="list-grup-flush">
             <div class="list-group-item list-group-item-action py-0 d-flex flex-sm-row align-items-center"
                 *ngFor="let file of files">
                 <span class="col-sm-3">{{file.name}}</span>
-                <span *ngIf="file_progress" class="col-sm-1 text-info">{{file_progress[file.name]?.progress | async}}%</span>
+                <span *ngIf="file_progress" class="col-sm-1">{{file_progress[file.name]?.progress | async}}%</span>
                 <!--
                 <span *ngIf="file_progress" class="col-sm-2 progress">
                     <div class="progress-bar bg-warning progress-bar-striped" role="progressbar"
@@ -21,13 +21,13 @@
             </div>
         </div>
     </div>
-    <div class="modal-footer bg-dark border-dark">
-        <button [disabled]="uploading || uploadSuccessful" class="btn btn-outline-info btn-sm me-auto" (click)="addFiles()">
+    <div class="modal-footer border-0">
+        <button [disabled]="uploading || uploadSuccessful" class="btn btn-outline-primary btn-sm me-auto" (click)="addFiles()">
             Add Files
         </button>
         <button *ngIf="showCancelButton" type="button" class="btn btn-outline-warning btn-sm"
             (click)="cancel()">Cancel</button>
-        <button type="button" class="btn btn-outline-light btn-sm" [disabled]="!canBeClosed"
+        <button type="button" class="btn btn-outline-secondary btn-sm" [disabled]="!canBeClosed"
             (click)="close()">{{primaryButtonText}}</button>
     </div>
 </div>

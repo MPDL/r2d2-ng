@@ -23,7 +23,7 @@
                 <div class="me-1" *ngFor="let author of dataset.metadata.authors">
                     <small [innerHtml]="(author?.familyName || no_name) + ' ' + (author?.givenName || no_name)">
                     </small>
-                    <a *ngIf="author.orcid" [href]="author.orcid" target="_blank">
+                    <a *ngIf="author.orcid" class="ms-1" [href]="author.orcid" target="_blank">
                         <img alt="ORCID logo" src="assets/images/ORCIDiD_icon.png" width="16" height="16" />
                     </a>
                 </div>
