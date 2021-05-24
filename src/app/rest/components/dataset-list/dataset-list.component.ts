@@ -97,7 +97,7 @@ export class DatasetListComponent implements OnInit {
         break;
       case 'reset':
         field = 'state';
-        value = '';
+        value = 'PUBLIC';
         break;
       default:
         break;

@@ -12,10 +12,9 @@
         </div>
         <div class="col-11">
             <div class="d-flex flex-sm-row">
-                <!--cols is not required for flex-row, but may to used to limit row length ...-->
+                <!--cols is not required for flex-row, but may be used to limit row length ...-->
                 <!--<span class="col-8" [innerHtml]="dataset.metadata.title"></span>-->
                 <strong class="col-10" [innerHtml]="dataset.metadata.title"></strong>
-                <small class="col-sm-2 ms-auto text-secondary" [innerHtml]="'num of files n/a in index!'"></small>
             </div>
             <div class="d-flex flex-sm-row">
                 <small class="col-10 text-muted" [innerHtml]="dataset.metadata.description"></small>
@@ -38,7 +37,6 @@
                 <small class="me-2 text-info" [innerHtml]="dataset.state"></small>
                 <small class="text-secondary" [innerHtml]="dataset.modificationDate"></small>
             </div>
-            <hr>
         </div>
     </div>
 </div>
