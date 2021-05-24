@@ -1,23 +1,27 @@
 <div class="container">
-    <div class="mt-0 row">
-        <div class="card col-6">
-            <div class="card-header">
-                <h2 class="card-title">Organizations</h2>
-            </div>
-            <div class="container">
-                <input class="form-control form-control-sm" type="text" placeholder="organization" [formControl]="organization"
-                id="organization" (keyup)="ouSearch()" autocomplete="off"/>
-                <div *ngIf="ous">
-                    <ul class="list-group">
-                        <li class="list-group-item list-group-item-action list-group-item-secondary py-0 text-start"
-                            *ngFor="let ou of ous | async" (click)="select(ou)"><small>{{ou.name}}</small></li>
-                    </ul>
+    <div class="row g-2">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Organizations</h2>
+                </div>
+                <div class="container mb-1">
+                    <input class="form-control form-control-sm" type="text" placeholder="organization"
+                        [formControl]="organization" id="organization" (keyup)="ouSearch()" autocomplete="off" />
+                    <div *ngIf="ous">
+                        <ul class="list-group">
+                            <li class="list-group-item list-group-item-action list-group-item-secondary py-0 text-start"
+                                *ngFor="let ou of ous | async" (click)="select(ou)"><small>{{ou.name}}</small></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="card col-6">
-            <div class="card-body" *ngIf="ou">
-                <pre [innerHtml]="ou | async | json | highLightJson: highlight"></pre>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body" *ngIf="ou">
+                    <pre [innerHtml]="ou | async | json | highLightJson: highlight"></pre>
+                </div>
             </div>
         </div>
     </div>

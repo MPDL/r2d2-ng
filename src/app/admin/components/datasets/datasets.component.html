@@ -1,27 +1,33 @@
 <div class="container">
-    <div class="mt-0 row">
-        <div class="card col-6">
-            <div class="card-header">
-                <h2 class="card-title">Datasets</h2>
-            </div>
-            <div class="list-group-flush">
-                <div class="list-group-item list-group-item-action py-0 d-flex flex-sm-row align-items-center"
-                    *ngFor="let dataset of datasets | async" (click)="goTo(dataset)">
-                    <span class="col-sm-5 text-start" [innerHtml]="dataset.id" [ngClass]="{'text-info': dataset.id === selected}"></span>
-                    <span class="col-sm-1 text-start" [innerHtml]="dataset.versionNumber"></span>
-                    <span class="col-sm-1 text-start" [innerHtml]="dataset.state"></span>
-                    <span class="col-sm-3 text-start text-truncate me-2" [innerHtml]="dataset.metadata.title"></span>
-                    <span class="col-sm-1 text-end" [innerHtml]="'files: ' + dataset.files?.length"></span>
-                    <div class="col-sm-1 text-end">
-                        <input type="submit" class="btn btn-outline-secondary btn-sm"
-                          (click)="remove(dataset); $event.stopPropagation()" name="delete" value="x" />
-                      </div>
+    <div class="row g-2">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Datasets</h2>
+                </div>
+                <div class="list-group-flush">
+                    <div class="list-group-item list-group-item-action py-0 d-flex flex-sm-row align-items-center"
+                        *ngFor="let dataset of datasets | async" (click)="goTo(dataset)">
+                        <span class="col-sm-5 text-start" [innerHtml]="dataset.id"
+                            [ngClass]="{'text-info': dataset.id === selected}"></span>
+                        <span class="col-sm-1 text-start" [innerHtml]="dataset.versionNumber"></span>
+                        <span class="col-sm-1 text-start" [innerHtml]="dataset.state"></span>
+                        <span class="col-sm-3 text-start text-truncate me-2"
+                            [innerHtml]="dataset.metadata.title"></span>
+                        <span class="col-sm-1 text-end" [innerHtml]="'files: ' + dataset.files?.length"></span>
+                        <div class="col-sm-1 text-end">
+                            <input type="submit" class="btn btn-outline-secondary btn-sm"
+                                (click)="remove(dataset); $event.stopPropagation()" name="delete" value="x" />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="card col-6">
-            <div class="card-body" *ngIf="set">
-                <pre [innerHtml]="set | async | json | highLightJson: highlight"></pre>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body" *ngIf="set">
+                    <pre [innerHtml]="set | async | json | highLightJson: highlight"></pre>
+                </div>
             </div>
         </div>
     </div>

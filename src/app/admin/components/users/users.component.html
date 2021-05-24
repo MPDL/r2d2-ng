@@ -1,25 +1,29 @@
 <div class="container">
-    <div class="mt-0 row">
-        <div class="card col-2">
-            <div class="card-body">
-                <p>placeholder 4 anything</p>
+    <div class="row g-2">
+        <div class="col-2">
+            <div class="card">
+                <div class="card-body">
+                    <p>placeholder 4 anything</p>
+                </div>
             </div>
         </div>
-        <div class="card col-10">
-            <div class="card-header d-flex flex-sm-row align-items-center justify-content-between">
-                <h2 class="card-title">Users</h2>
-                <input *ngIf="auth.isLoggedIn" type="submit" class="btn btn-outline-light btn-sm" name="add" value="+"
-                    (click)="addNewUser()" />
-            </div>
-            <div class="list-group-flush">
-                <div class="list-group-item list-group-item-action py-0 d-flex flex-sm-row align-items-center"
-                    *ngFor="let user of users | async" (click)="goTo(user.id)">
-                    <span class="col-sm-4 text-start" [innerHtml]="user.email"></span>
-                    <span class="col-sm-1 text-end me-2" [innerHtml]="user.active"></span>
-                    <span class="col-sm-2 text-end text-truncate me-2" [innerHtml]="user.person.givenName"></span>
-                    <span class="col-sm-2 text-start text-truncate" [innerHtml]="user.person.familyName"></span>
-                    <span *ngIf="user.person.affiliations?.length > 0" class="col-sm-3 text-start text-truncate"
-                        [innerHtml]="user.person.affiliations[0]?.organization"></span>
+        <div class="col-10">
+            <div class="card">
+                <div class="card-header d-flex flex-sm-row align-items-center justify-content-between">
+                    <h2 class="card-title">Users</h2>
+                    <input *ngIf="auth.isLoggedIn" type="submit" class="btn btn-outline-light btn-sm" name="add"
+                        value="+" (click)="addNewUser()" />
+                </div>
+                <div class="list-group-flush">
+                    <div class="list-group-item list-group-item-action py-0 d-flex flex-sm-row align-items-center"
+                        *ngFor="let user of users | async" (click)="goTo(user.id)">
+                        <span class="col-sm-4 text-start" [innerHtml]="user.email"></span>
+                        <span class="col-sm-1 text-end me-2" [innerHtml]="user.active"></span>
+                        <span class="col-sm-2 text-end text-truncate me-2" [innerHtml]="user.person.givenName"></span>
+                        <span class="col-sm-2 text-start text-truncate" [innerHtml]="user.person.familyName"></span>
+                        <span *ngIf="user.person.affiliations?.length > 0" class="col-sm-3 text-start text-truncate"
+                            [innerHtml]="user.person.affiliations[0]?.organization"></span>
+                    </div>
                 </div>
             </div>
         </div>
