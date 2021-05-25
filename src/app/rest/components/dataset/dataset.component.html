@@ -37,16 +37,15 @@
             <dt class="col-sm-2 text-end">
               Author/s
             </dt>
-            <dd class="col-sm-10">
+            <dd class="col-sm-10 wilhelm">
               <div class="row py-0" *ngFor="let person of dataset.metadata?.authors">
                 <dt class="col-sm-3">
                   <span [innerHtml]="person.familyName + ', '"></span>
                   <span [innerHtml]="person.givenName"></span>
                   <span *ngIf="person.orcid">
-                    <a class="ms-1" [href]="person.orcid" target="_blank">
+                    <a class="ms-1" [href]="person.orcid.startsWith('http') ? person.orcid : 'https://orcid.org/' + person.orcid" target="_blank">
                       <img alt="ORCID logo" src="assets/images/ORCIDiD_icon.png" width="16" height="16" />
                     </a>
-                    <!--<span class="col-sm" [innerHtml]="person.orcid"></span>-->
                   </span>
                 </dt>
                 <dd class="col-sm-9">

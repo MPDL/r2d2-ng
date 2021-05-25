@@ -15,7 +15,8 @@ import { constants } from 'node:http2';
 
 @Component({
   selector: 'r2d2-dataset',
-  templateUrl: './dataset.component.html'
+  templateUrl: './dataset.component.html',
+  styleUrls: ['./dataset.component.scss']
 })
 export class DatasetComponent implements OnInit {
 
