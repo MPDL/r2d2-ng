@@ -1,97 +1,108 @@
 <div class="container">
-    <div class="mt-0 row">
-        <div class="card col-12 ms-auto">
-            <div class="button row mb-3">
-                <a class="nav-link col-10 offset-2" (click)="datasetDetails()"><i
-                            class="bi-info-circle me-2 text-secondary"
-                            style="font-size: 2rem;"></i><span class="text-primary">{{datasetId}}</span></a>
+    <div class="row g-4">
+        <div class="col-9">
+            <div class="card">
+                <div class="button row mb-3">
+                    <a class="nav-link col-10 offset-2" (click)="datasetDetails()"><i
+                            class="bi-info-circle me-2 text-secondary" style="font-size: 1.5rem;"></i><span
+                            class="text-primary">{{datasetId}}</span></a>
+                </div>
+                <form *ngIf="datasetForm" [formGroup]="datasetForm" (ngSubmit)="onFormSubmit()">
+                    <div class="row w-100 mb-1">
+                        <label for="ds-title" class="col-2 text-end col-form-label-sm">Title</label>
+                        <div class="col-10">
+                            <input class="form-control form-control-sm" type="text" formControlName="title"
+                                id="ds-title" required />
+                            <r2d2-validation-errors [control]="datasetForm.controls.title"
+                                [messages]="{reqired:'title is required', mustOrNot:'Title is disallowed', minlength:'gimme at least 4!'}">
+                            </r2d2-validation-errors>
+                        </div>
+                    </div>
+                    <div class="row w-100">
+                        <!-- cause ou has also mb-1, no need here ...-->
+                        <label for="authors" class="col-2 text-end col-form-label-sm">Author/s</label>
+                        <div class="col-10">
+                            <div formArrayName="authors" id="authors">
+                                <div *ngFor="let author of datasetForm.controls['authors']['controls']; let i=index">
+                                    <div [formGroupName]="i">
+                                        <r2d2-author [authorsForm]="datasetForm.controls['authors']['controls'][i]"
+                                            (notice)="handleAuthors($event, i)">
+                                        </r2d2-author>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row w-100 mb-1">
+                        <label for="ds-description" class="col-2 text-end col-form-label-sm">Description</label>
+                        <div class="col-10">
+                            <textarea class="form-control form-control-sm" rows="1" formControlName="description"
+                                id="ds-description"></textarea>
+                        </div>
+                    </div>
+                    <div class="row w-100 mb-1">
+                        <label for="ds-content" class="col-2 text-end col-form-label-sm">DOI</label>
+                        <div class="col-10">
+                            <input class="form-control form-control-sm" type="text" formControlName="doi" id="ds-doi" />
+                        </div>
+                    </div>
+                    <div class="row w-100 mb-1">
+                        <label for="ds-genres" class="col-2 text-end col-form-label-sm">Genres</label>
+                        <div class="col-10">
+                            <r2d2-chips [parent_form]="datasetForm" control_name="genres"></r2d2-chips>
+                        </div>
+                    </div>
+                    <div class="row w-100 mb-1">
+                        <label for="ds-keywords" class="col-2 text-end col-form-label-sm">Keywords</label>
+                        <div class="col-10">
+                            <r2d2-chips [parent_form]="datasetForm" control_name="keywords"></r2d2-chips>
+                        </div>
+                    </div>
+                    <div class="row w-100 mb-0">
+                        <label for="ds-license" class="col-2 text-end col-form-label-sm">License</label>
+                        <div class="col-10">
+                            <div formGroupName="license" id="ds-license">
+                                <r2d2-license [licenseForm]="$any(datasetForm.controls['license'])">
+                                </r2d2-license>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row w-100 mb-1">
+                        <label for="publications" class="col-2 text-end col-form-label-sm">Publications</label>
+                        <div class="col-10">
+                            <div formArrayName="correspondingPapers" id="correspondingPapers">
+                                <div
+                                    *ngFor="let correspondingPaper of datasetForm.controls['correspondingPapers']['controls']; let i=index">
+                                    <div [formGroupName]="i">
+                                        <r2d2-publication
+                                            [publicationForm]="datasetForm.controls['correspondingPapers']['controls'][i]"
+                                            (notice)="handlePublications($event, i)">
+                                        </r2d2-publication>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row w-100 py-4">
+                        <div class="col-3 offset-2">
+                            <input type="button" class="btn btn-outline-secondary btn-sm me-2" name="cancel"
+                                value="cancel" (click)="gotoList()" />
+                            <input type="submit" class="btn btn-outline-secondary btn-sm" name="save" value="save" />
+                        </div>
+                    </div>
+                </form>
             </div>
-            <form *ngIf="datasetForm" [formGroup]="datasetForm" (ngSubmit)="onFormSubmit()">
-                <div class="row w-100 mb-1">
-                    <label for="ds-title" class="col-2 text-end col-form-label-sm">Title</label>
-                    <div class="col-10">
-                        <input class="form-control form-control-sm" type="text" formControlName="title" id="ds-title"
-                            required />
-                        <r2d2-validation-errors [control]="datasetForm.controls.title"
-                            [messages]="{reqired:'title is required', mustOrNot:'Title is disallowed', minlength:'gimme at least 4!'}">
-                        </r2d2-validation-errors>
-                    </div>
-                </div>
-                <div class="row w-100">
-                    <!-- cause ou has also mb-1, no need here ...-->
-                    <label for="authors" class="col-2 text-end col-form-label-sm">Author/s</label>
-                    <div class="col-10">
-                        <div formArrayName="authors" id="authors">
-                            <div *ngFor="let author of datasetForm.controls['authors']['controls']; let i=index">
-                                <div [formGroupName]="i">
-                                    <r2d2-author [authorsForm]="datasetForm.controls['authors']['controls'][i]"
-                                        (notice)="handleAuthors($event, i)">
-                                    </r2d2-author>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row w-100 mb-1">
-                    <label for="ds-description" class="col-2 text-end col-form-label-sm">Description</label>
-                    <div class="col-10">
-                        <textarea class="form-control form-control-sm" rows="1" formControlName="description"
-                            id="ds-description"></textarea>
-                    </div>
-                </div>
-                <div class="row w-100 mb-1">
-                    <label for="ds-content" class="col-2 text-end col-form-label-sm">DOI</label>
-                    <div class="col-10">
-                        <input class="form-control form-control-sm" type="text" formControlName="doi" id="ds-doi" />
-                    </div>
-                </div>
-                <div class="row w-100 mb-1">
-                    <label for="ds-genres" class="col-2 text-end col-form-label-sm">Genres</label>
-                    <div class="col-10">
-                        <r2d2-chips [parent_form]="datasetForm" control_name="genres"></r2d2-chips>
-                    </div>
-                </div>
-                <div class="row w-100 mb-1">
-                    <label for="ds-keywords" class="col-2 text-end col-form-label-sm">Keywords</label>
-                    <div class="col-10">
-                        <r2d2-chips [parent_form]="datasetForm" control_name="keywords"></r2d2-chips>
-                    </div>
-                </div>
-                <div class="row w-100 mb-0">
-                    <label for="ds-license" class="col-2 text-end col-form-label-sm">License</label>
-                    <div class="col-10">
-                        <div formGroupName="license" id="ds-license">
-                            <r2d2-license [licenseForm]="$any(datasetForm.controls['license'])">
-                            </r2d2-license>
-                        </div>
-                    </div>
-                </div>
-                <div class="row w-100 mb-1">
-                    <label for="publications" class="col-2 text-end col-form-label-sm">Publications</label>
-                    <div class="col-10">
-                        <div formArrayName="correspondingPapers" id="correspondingPapers">
-                            <div
-                                *ngFor="let correspondingPaper of datasetForm.controls['correspondingPapers']['controls']; let i=index">
-                                <div [formGroupName]="i">
-                                    <r2d2-publication
-                                        [publicationForm]="datasetForm.controls['correspondingPapers']['controls'][i]"
-                                        (notice)="handlePublications($event, i)">
-                                    </r2d2-publication>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row w-100 p-4">
-                    <div class="col-3 offset-2">
-                        <input type="button" class="btn btn-outline-secondary btn-sm me-2" name="cancel" value="cancel"
-                            (click)="gotoList()" />
-                        <input type="submit" class="btn btn-outline-secondary btn-sm" name="save" value="save" />
-                    </div>
-                </div>
-            </form>
         </div>
-
+        <div class="col-3">
+            <div class="card wilhelm">
+                <div class="card-header">
+                  <h6>Need help ...</h6>
+                </div>
+                <div class="card-body">
+                  some help text ...
+                </div>
+              </div>
+        </div>
     </div>
 </div>
 <!--<pre>{{datasetForm?.value | json}}</pre>-->

@@ -20,6 +20,10 @@
   .btn:focus{
     box-shadow:none !important;
 }
+a:hover {
+  cursor: pointer
+}
+
 pre {
   white-space: pre-wrap;
 }

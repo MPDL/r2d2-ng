@@ -21,9 +21,10 @@ import { MultiUploadComponent } from './components/multi-upload/multi-upload.com
 import { AuthorComponent } from './components/model/author/author.component';
 import { AffiliationComponent } from './components/model/affiliation/affiliation.component';
 import { PublicationComponent } from './components/model/publication/publication.component';
-import { HighLightJsonPipe } from './services/high-light-json.pipe';
+import { HighLightJsonPipe } from './services/pipes/high-light-json.pipe';
 import { LicenseComponent } from './components/model/license/license.component';
 import { GrantComponent } from './components/model/grant/grant.component';
+import { SplitAndOrJoinPipe } from './services/pipes/split-and-join.pipe';
 
 
 @NgModule({
@@ -60,7 +61,8 @@ import { GrantComponent } from './components/model/grant/grant.component';
     PublicationComponent,
     LicenseComponent,
     HighLightJsonPipe,
-    GrantComponent
+    GrantComponent,
+    SplitAndOrJoinPipe
   ],
   declarations: [
     PageNotFoundComponent,
@@ -76,7 +78,8 @@ import { GrantComponent } from './components/model/grant/grant.component';
     PublicationComponent,
     HighLightJsonPipe,
     LicenseComponent,
-    GrantComponent
+    GrantComponent,
+    SplitAndOrJoinPipe
   ],
   providers: [
     MessageService

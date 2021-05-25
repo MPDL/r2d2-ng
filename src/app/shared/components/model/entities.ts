@@ -101,8 +101,8 @@ export interface Metadata {
     authors?: Person[];
     doi?: string;
     description?: string;
-    genres?: string;
-    keywords?: string;
+    genres?: string[];
+    keywords?: string[];
     license?: License;
     language?: string;
     correspondingPapers?: Publication[];

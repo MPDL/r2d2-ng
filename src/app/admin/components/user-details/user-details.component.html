@@ -10,14 +10,14 @@
         <div class="col-10">
             <div class="card" *ngIf="user | async; let u">
                 <div class="row">
-                    <button class="btn col-1" style="font-size: 2rem;" (click)="back2list()">
+                    <button class="btn col-1" style="font-size: 1.5rem;" (click)="back2list()">
                         <i class="bi-list-ol"></i>
                     </button>
-                    <button class="btn text-primary col-1" style="font-size: 2rem;" [disabled]="editing"
+                    <button class="btn text-primary col-1" style="font-size: 1.5rem;" [disabled]="editing"
                         (click)="edit(u)">
                         <i class="bi-pencil"></i>
                     </button>
-                    <button class="btn text-warning col-1" style="font-size: 2rem;" [disabled]="editing"
+                    <button class="btn text-warning col-1" style="font-size: 1.5rem;" [disabled]="editing"
                         (click)="delete(u.id)">
                         <i class="bi-trash"></i>
                     </button>

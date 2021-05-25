@@ -8,6 +8,8 @@ import { DatasetComponent } from './components/dataset/dataset.component';
 import { FacetComponent } from './components/views/facet/facet.component';
 import { RestComponent } from './rest.component';
 import { ListViewComponent } from './components/views/list-view/list-view.component';
+import { FileListComponent } from './components/views/file-list/file-list.component';
+import { VersionListComponent } from './components/views/version-list/version-list.component';
 import { DatasetReviewComponent } from './components/dataset-review/dataset-review.component';
 
 @NgModule({
@@ -18,6 +20,8 @@ import { DatasetReviewComponent } from './components/dataset-review/dataset-revi
     FacetComponent,
     RestComponent,
     ListViewComponent,
+    FileListComponent,
+    VersionListComponent,
     DatasetReviewComponent,
   ],
   imports: [
