@@ -76,6 +76,20 @@ export class R2d2Service {
       );
   }
 
+  page(from: string, size: string): Observable<SearchResult<DatasetVersion>> {
+      let params = new HttpParams();
+      params = params.append('from', from);
+      params = params.append('size', size);
+    return this.http.get<SearchResult<DatasetVersion>>(this.apiUrl, { params })
+    .pipe(
+      map(response => {
+        if (response.total > 0) {
+          console.log("R2d2Service, total = "+response.total);
+        }; 
+        return response})
+    );
+  }
+
   get(id): Observable<DatasetVersion> {
     return this.http.get<DatasetVersion>(this.apiUrl + '/' + id)
       .pipe(

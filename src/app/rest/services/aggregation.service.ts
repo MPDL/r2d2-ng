@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { map, catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageService } from '../../shared/services/message.service';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AggregationService {
 
-  searchUrl = 'http://localhost:8080/datasets/search';
+  searchUrl = environment.r2d2_rest_uri+'/search';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };

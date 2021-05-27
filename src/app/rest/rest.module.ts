@@ -9,6 +9,7 @@ import { FacetComponent } from './components/views/facet/facet.component';
 import { RestComponent } from './rest.component';
 import { ListViewComponent } from './components/views/list-view/list-view.component';
 import { DatasetReviewComponent } from './components/dataset-review/dataset-review.component';
+import { PaginationDirective } from './directives/pagination.directive';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { DatasetReviewComponent } from './components/dataset-review/dataset-revi
     RestComponent,
     ListViewComponent,
     DatasetReviewComponent,
+    PaginationDirective    
   ],
   imports: [
     CommonModule,
