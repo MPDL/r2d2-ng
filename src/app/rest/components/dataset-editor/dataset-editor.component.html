@@ -1,11 +1,17 @@
 <div class="container">
-    <div class="row g-4">
-        <div class="col-9">
+    <div [ngClass]="{'row': more}">
+        <div [ngClass]="{'col-9': more}">
             <div class="card">
-                <div class="button row mb-3">
-                    <a class="nav-link col-10 offset-2" (click)="datasetDetails()"><i
-                            class="bi-info-circle me-2 text-secondary" style="font-size: 1.5rem;"></i><span
-                            class="text-primary">{{datasetId}}</span></a>
+                <div class="button row mb-3 align-items-center" style="font-size: 1.5rem;">
+                    <a class="nav-link col-6 offset-2" (click)="datasetDetails()"><i
+                            class="bi-info-circle me-2 text-secondary"></i><span><small
+                            class="text-primary">{{datasetId}}</small></span></a>
+                    <a *ngIf="!more" class="text-secondary col-1 ms-auto" (click)="switchView()"><i
+                            class="bi-chevron-right" data-toggle="tooltip" data-placement="top"
+                            title="get help ..."></i></a>
+                    <a *ngIf="more" class="text-secondary col-1 ms-auto" (click)="switchView()"><i
+                            class="bi-chevron-left" data-toggle="tooltip" data-placement="top"
+                            title="hide help ..."></i></a>
                 </div>
                 <form *ngIf="datasetForm" [formGroup]="datasetForm" (ngSubmit)="onFormSubmit()">
                     <div class="row w-100 mb-1">
@@ -93,15 +99,15 @@
                 </form>
             </div>
         </div>
-        <div class="col-3">
+        <div *ngIf="more" class="col-3">
             <div class="card wilhelm">
                 <div class="card-header">
-                  <h6>Need help ...</h6>
+                    <h6>Help ...</h6>
                 </div>
                 <div class="card-body">
-                  some help text ...
+                    some help text ...
                 </div>
-              </div>
+            </div>
         </div>
     </div>
 </div>

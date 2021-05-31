@@ -19,6 +19,7 @@ export class DatasetEditorComponent implements OnInit {
   datasetId: string;
   datasetLMD: string;
   dataset: DatasetVersion;
+  more: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -134,4 +135,8 @@ export class DatasetEditorComponent implements OnInit {
         }
       });
     }
+
+    switchView() {
+      this.more = !this.more;
+  }
 }

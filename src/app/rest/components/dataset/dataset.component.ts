@@ -22,6 +22,7 @@ export class DatasetComponent implements OnInit {
 
   dataset$: Observable<DatasetVersion>;
   files$: Observable<R2D2File[]>;
+  more: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -232,5 +233,9 @@ export class DatasetComponent implements OnInit {
         this.message.info('token 4 ' + id + '\n' + rt.token + '\n' + this.router.url.concat('/').concat(rt.token));
       },
       err => this.message.error(err));
+  }
+
+  switchView() {
+      this.more = !this.more;
   }
 }
