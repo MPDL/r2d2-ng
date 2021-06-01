@@ -30,7 +30,7 @@ export class DatasetListComponent implements OnInit {
   totalItems: number;
   pageSize: number = 10;
   numPages: number;
-  maxRange: number = 5;
+  maxRange: number = 1;
   currentPage: number = 1;
 
   constructor(
@@ -165,6 +165,9 @@ export class DatasetListComponent implements OnInit {
     console.log('numPages: ', this.numPages);
     console.log('maxRange:  ', this.maxRange);
     console.log('currentPage:  ', this.currentPage);
+
+    console.log('isFirst: ', this.pagination.isFirst);
+    console.log('isLast:  ', this.pagination.isLast);
   }
 
 }

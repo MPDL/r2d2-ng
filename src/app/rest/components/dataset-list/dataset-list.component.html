@@ -79,13 +79,13 @@
                 {{i+1}}
               </button>
             </li>
-            <li class="page-item">
-              <button class="page-link" (click)="pagination.next()" [disabled]="pagination.isLast">
+            <li class="page-item disabled">
+              <button class="page-link" tabindex="-1" (click)="pagination.next()" [disabled]="pagination.isLast">
                 Next
               </button>
             </li>
-            <li class="page-item">
-              <button class="page-link" (click)="pagination.last()" [disabled]="pagination.isLast">
+            <li class="page-item disabled">
+              <button class="page-link" tabindex="-1" (click)="pagination.last()" [disabled]="pagination.isLast">
                 Last
               </button>
             </li>

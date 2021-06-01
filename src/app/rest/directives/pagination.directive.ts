@@ -32,6 +32,7 @@ export class PaginationDirective implements OnChanges, OnInit {
 
   ngOnChanges({ pageNo, totalPages }: SimpleChanges) {
     // Needs to be checked before pageNo
+    /*
     if (totalPages) {
       this.onTotalPagesInput();
     }
@@ -39,10 +40,7 @@ export class PaginationDirective implements OnChanges, OnInit {
     if (pageNo) {
       this.onPageNoInput();
     }
-  }
-
-  @HostListener("input", ["$event.target.value"]) onInput(val) {
-    this.setValue(this.getParsedValue(val));
+    */
   }
 
   @HostListener("change", ["$event.target.value"]) onChange(val) {
@@ -92,14 +90,10 @@ export class PaginationDirective implements OnChanges, OnInit {
     this.pageChange.emit(this.pageNo);
   }
 
-  private getParsedValue(val: string): string {
-    return val.replace(/(^0)|([^0-9]+$)/, "");
-  }
-
   private isOutOfRange(val: string): boolean {
     return Number(val) > this.totalPages;
   }
-
+/*
   private onTotalPagesInput() {
     if (typeof this.totalPages !== "number") {
       this.totalPages = 1;
@@ -117,6 +111,6 @@ export class PaginationDirective implements OnChanges, OnInit {
 
     this.setValue(this.pageNo);
   }
-
+*/
 }
 
