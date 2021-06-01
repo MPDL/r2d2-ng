@@ -3,7 +3,7 @@
         <div class="col-9">
             <div class="card">
                 <div class="card-header d-flex flex-sm-row px-0 align-items-center">
-                    <div class="col-6 offset-1">
+                    <div class="col-4 offset-1">
                         <div class="input-group">
                             <input type="text" class="form-control form-control-sm" placeholder="search ..."
                                 [(ngModel)]="search_term" (keyup.enter)="filter()" />
@@ -11,13 +11,16 @@
                                 (click)="filter()">search</button>
                         </div>
                     </div>
+                    <div class="col-sm-5">
+                    <pagination-controls class="wilhelm" (pageChange)="p = $event"></pagination-controls>
+                </div>
                     <input *ngIf="auth.isLoggedIn" type="submit"
-                        class="col-1 ms-auto btn btn-outline-primary btn-sm text-truncate" name="add"
+                        class="col-2 ms-auto btn btn-outline-primary btn-sm text-truncate" name="add"
                         value="add new dataset" (click)="addNewDataset()" />
                 </div>
                 <div class="list-group-flush">
                     <div class="list-group-item list-group-item-action py-1 border-bottom"
-                        *ngFor="let dataset of datasets | async" (click)="goTo(dataset.id)">
+                        *ngFor="let dataset of datasets | async | paginate: {itemsPerPage: 3, currentPage: p}" (click)="goTo(dataset.id)">
                         <r2d2-list-view [dataset]="dataset" [authenticated]="auth.isLoggedIn"></r2d2-list-view>
                     </div>
                 </div>

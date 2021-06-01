@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
 import { SharedModule } from '../shared/shared.module';
 import { CoreRoutingModule } from './core-routing.module';
 import { HeadComponent } from './components/head/head.component';
@@ -27,7 +26,7 @@ import { RegistrationComponent } from './components/authentication/registration/
     CommonModule,
     CoreRoutingModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   exports: [
     RouterModule,

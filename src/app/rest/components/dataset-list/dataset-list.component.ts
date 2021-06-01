@@ -9,11 +9,13 @@ import { AggregationService } from '../../services/aggregation.service';
 
 @Component({
   selector: 'r2d2-dataset-list',
+  styleUrls: ['./dataset-list.component.scss'],
   templateUrl: './dataset-list.component.html'
 })
 export class DatasetListComponent implements OnInit {
 
   datasets: Observable<DatasetVersion[]>;
+  p: number = 1;
   users: Observable<any>;
   no_name = 'n/a';
   search_term: string;

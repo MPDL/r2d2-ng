@@ -25,7 +25,7 @@ import { HighLightJsonPipe } from './services/pipes/high-light-json.pipe';
 import { LicenseComponent } from './components/model/license/license.component';
 import { GrantComponent } from './components/model/grant/grant.component';
 import { SplitAndOrJoinPipe } from './services/pipes/split-and-join.pipe';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   imports: [
@@ -40,6 +40,7 @@ import { SplitAndOrJoinPipe } from './services/pipes/split-and-join.pipe';
     MatListModule,
     MatProgressBarModule,
     MatSliderModule,
+    NgxPaginationModule
   ],
   exports: [
     FormsModule,
@@ -62,7 +63,8 @@ import { SplitAndOrJoinPipe } from './services/pipes/split-and-join.pipe';
     LicenseComponent,
     HighLightJsonPipe,
     GrantComponent,
-    SplitAndOrJoinPipe
+    SplitAndOrJoinPipe,
+    NgxPaginationModule
   ],
   declarations: [
     PageNotFoundComponent,

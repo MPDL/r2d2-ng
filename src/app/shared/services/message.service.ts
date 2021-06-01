@@ -22,7 +22,7 @@ export class MessageService {
       data: message,
       panelClass: 'r2d2-mat-dialog',
       position: {
-        top: '1%'
+        top: '5%'
       }
     });
   }
