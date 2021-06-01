@@ -148,7 +148,6 @@ export class DatasetListComponent implements OnInit {
           result.total > 0 ? result.hits.map((ito) => ito.source) : []
         )
       );
-    this.showLog();
   }
 
   pageSizeHandler(event: any) {
@@ -156,18 +155,6 @@ export class DatasetListComponent implements OnInit {
     this.pageSize = Number.parseInt(event.target.value);
     this.numPages = Math.ceil(this.totalItems/this.pageSize);
     this.currentPage = Math.floor(relocate/this.pageSize);
-    this.showLog();
-  }
-
-  showLog() {
-    console.log('totalItems: ', this.totalItems);
-    console.log('pageSize:  ', this.pageSize);
-    console.log('numPages: ', this.numPages);
-    console.log('maxRange:  ', this.maxRange);
-    console.log('currentPage:  ', this.currentPage);
-
-    console.log('isFirst: ', this.pagination.isFirst);
-    console.log('isLast:  ', this.pagination.isLast);
   }
 
 }

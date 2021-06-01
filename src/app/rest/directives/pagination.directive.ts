@@ -1,8 +1,6 @@
 import {   
   Directive,
-  OnChanges,
   OnInit,
-  SimpleChanges,
   Input,
   Output,
   EventEmitter,
@@ -15,7 +13,7 @@ import {
   selector: '[r2d2Pagination]',
   exportAs: 'r2d2Pagination'
 })
-export class PaginationDirective implements OnChanges, OnInit {
+export class PaginationDirective implements OnInit {
 
   @Input() pageNo = 1;
   @Input() totalPages = 1;
@@ -28,19 +26,6 @@ export class PaginationDirective implements OnChanges, OnInit {
   ngOnInit() {
     // In case no value is passed
     this.setValue(this.pageNo);
-  }
-
-  ngOnChanges({ pageNo, totalPages }: SimpleChanges) {
-    // Needs to be checked before pageNo
-    /*
-    if (totalPages) {
-      this.onTotalPagesInput();
-    }
-
-    if (pageNo) {
-      this.onPageNoInput();
-    }
-    */
   }
 
   @HostListener("change", ["$event.target.value"]) onChange(val) {
@@ -93,24 +78,6 @@ export class PaginationDirective implements OnChanges, OnInit {
   private isOutOfRange(val: string): boolean {
     return Number(val) > this.totalPages;
   }
-/*
-  private onTotalPagesInput() {
-    if (typeof this.totalPages !== "number") {
-      this.totalPages = 1;
-    }
-  }
 
-  private onPageNoInput() {
-    if (
-      typeof this.pageNo !== "number" ||
-      this.pageNo < 1 ||
-      this.pageNo > this.totalPages
-    ) {
-      this.pageNo = 1;
-    }
-
-    this.setValue(this.pageNo);
-  }
-*/
 }
 
