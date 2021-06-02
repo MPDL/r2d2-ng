@@ -26,10 +26,4 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('r2d2-ng');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('r2d2-ng app is running!');
-  });
 });
