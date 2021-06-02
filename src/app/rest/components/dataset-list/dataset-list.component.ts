@@ -49,7 +49,6 @@ export class DatasetListComponent implements OnInit {
         if (result.total > 0) {
           this.totalItems = result.total;
           this.numPages = Math.ceil(this.totalItems/this.pageSize);
-          this.showLog();
         }; 
         return result.hits?.map((ito) => ito.source);
       })
