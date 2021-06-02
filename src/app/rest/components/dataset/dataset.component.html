@@ -147,10 +147,10 @@
             <div
               class="list-group-item list-group-item-action py-0 d-flex flex-sm-row align-items-center justify-content-between"
               *ngFor="let file of dataset?.files" (click)="download(file)">
-              <span [innerHtml]="file.filename"></span>
-              <span [innerHtml]="file.size"></span>
-              <span [innerHtml]="file.format"></span>
-              <span [innerHtml]="file.checksum"></span>
+              <span class="col-5 text-truncate" [innerHtml]="file.filename"></span>
+              <span class="col-2" [innerHtml]="file.size"></span>
+              <span class="col-4 text-truncate" [innerHtml]="file.format"></span>
+              <!--<span [innerHtml]="file.checksum"></span>-->
               <input *ngIf="auth.isLoggedIn" type="submit" class="btn btn-outline-secondary btn-sm"
                 (click)="remove(dataset, file); $event.stopPropagation()" name="delete" value="x" />
             </div>

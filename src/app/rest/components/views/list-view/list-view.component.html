@@ -17,15 +17,19 @@
                 <strong class="col-10" [innerHtml]="dataset.metadata.title"></strong>
             </div>
             <div class="d-flex flex-sm-row">
-                <small class="col-10 text-muted" [innerHtml]="dataset.metadata.description"></small>
+                <small class="col-10 text-muted text-truncate" [innerHtml]="dataset.metadata.description"></small>
             </div>
             <div class="d-flex flex-sm-row">
-                <div class="me-1" *ngFor="let author of dataset.metadata.authors">
-                    <small [innerHtml]="(author?.familyName || no_name) + ' ' + (author?.givenName || no_name)">
-                    </small>
-                    <a *ngIf="author.orcid" class="ms-1" [href]="author.orcid" target="_blank">
-                        <img alt="ORCID logo" src="assets/images/ORCIDiD_icon.png" width="16" height="16" />
-                    </a>
+                <div class="me-1" *ngFor="let author of dataset.metadata.authors; let i = index">
+                    <ng-container *ngIf="i < 5; else ellipsis">
+                        <small [innerHtml]="(author?.familyName || no_name) + ' ' + (author?.givenName || no_name)">
+                        </small>
+                        <a *ngIf="author.orcid" class="ms-1" (click)="$event.stopPropagation()" [href]="author.orcid"
+                            target="_blank">
+                            <img alt="ORCID logo" src="assets/images/ORCIDiD_icon.png" width="16" height="16" />
+                        </a>
+                    </ng-container>
+                    <ng-template #ellipsis><small *ngIf="i < 6" [innerHtml]="'...'"></small></ng-template>
                 </div>
             </div>
             <div class="d-flex flex-sm-row">

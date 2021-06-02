@@ -22,6 +22,9 @@ export class AggregationService {
 
   getBuckets(index_name, aggregation) {
     const params = {
+      query: {
+        term: { state: 'PUBLIC' }
+      },
       size: 0,
       aggregations: aggregation
     };
