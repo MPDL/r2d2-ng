@@ -11,7 +11,6 @@ import { map, catchError, mergeMap, switchMap, filter } from 'rxjs/operators';
 import { MultiUploadComponent } from '../../../shared/components/multi-upload/multi-upload.component';
 import { EMPTY, Observable } from 'rxjs';
 import { DatasetVersion, ITO, R2D2File } from '../../../shared/components/model/entities';
-import { constants } from 'node:http2';
 
 @Component({
   selector: 'r2d2-dataset',

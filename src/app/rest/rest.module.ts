@@ -11,6 +11,7 @@ import { ListViewComponent } from './components/views/list-view/list-view.compon
 import { FileListComponent } from './components/views/file-list/file-list.component';
 import { VersionListComponent } from './components/views/version-list/version-list.component';
 import { DatasetReviewComponent } from './components/dataset-review/dataset-review.component';
+import { PaginationDirective } from './directives/pagination.directive';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { DatasetReviewComponent } from './components/dataset-review/dataset-revi
     FileListComponent,
     VersionListComponent,
     DatasetReviewComponent,
+    PaginationDirective    
   ],
   imports: [
     CommonModule,
